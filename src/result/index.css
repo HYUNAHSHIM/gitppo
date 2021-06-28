@@ -1,0 +1,163 @@
+:root {
+    --yellow: #FFDF3E;
+}
+
+#export {
+    position: absolute;
+    background-color: var(--yellow);
+    border: none;
+    color: black;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    right: 30px;
+}
+
+#top {
+    margin:30px;
+}
+
+.topflex {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.box {
+    background-image: url("./bg.png");
+    background-size: cover;
+    border: 1px solid black;
+    margin: 30px;
+}
+
+.content {
+    margin: 50px;
+}
+
+.flex {
+    display: flex;
+    position: relative;
+}
+
+.intro {
+    margin: 30px;
+}
+
+#head {
+    width:200px;
+    border: 5px solid var(--yellow);
+    border-radius: 50%;
+}
+
+.school, .career, .field, .stack, .lang, .cert, .foreign {
+    margin: 80px;
+    position: relative;
+}
+
+hr {
+    margin: 10px;
+    margin-left: 20px;
+    width: 80%;
+    border: solid 3px grey;
+}
+
+.s1 {
+    position: absolute;
+    left:150px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.s2 {
+    position: absolute;
+    left:450px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.s3 {
+    position: absolute;
+    left:750px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+
+.c1 {
+    position: absolute;
+    left:100px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.c2 {
+    position: absolute;
+    left:300px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.c3 {
+    position: absolute;
+    left:500px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.c4 {
+    position: absolute;
+    left:700px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+.c5 {
+    position: absolute;
+    left:900px;
+    top:3px;
+    width: 20px;
+    height: 20px;
+    border: 10px solid var(--yellow);
+    border-radius: 100%;
+}
+
+.repo {
+    margin-bottom: 100px;
+}
+
+.tempbtn {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    border-radius: 50px;
+    margin:5px;
+}
+
+.pic {
+    position: absolute;
+    right: 0px;
+}
+
+#repopic {
+    width:300px;
+    height:150px;
+    margin: 20px;
+}
+
+.story {
+    margin: 80px 20px 80px 20px;
+}
