@@ -168,7 +168,7 @@ function result() {
         <div style={{padding: "40px"}}>
             <div className="result">
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                    <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>추가 내용 입력</h4>
+                    <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>포트폴리오 완성</h4>
                     
                     <Pdf targetRef={ref} filename="포트폴리오.pdf" x={-40} scale={0.6}>
                         {({ toPdf }) => <button className="nextButton" onClick={toPdf}>추출하기</button>}
