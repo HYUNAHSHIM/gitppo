@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./index.css";
 import {data} from "./data";
+import { Link } from "react-router-dom";
 
 const options = [
   "README를 사용합니다.",
@@ -18,8 +19,8 @@ function Repository({repo}) {
       <div className={"repo-each-container"}>
         <div className="list-group">
           {/* 레포지토리 이름 */}
-          <label className="list-group-item repo-each-title">
-            <input className="form-check-input me-1" type="checkbox" defaultChecked={true} onChange={event => {
+          <label className="list-group-item repo-each-title" style={{border: "none", borderBottom: "1px solid #ccc", padding: "15px 10px"}}>
+            <input className="form-check-input me-1" type="checkbox" defaultChecked={false} onChange={event => {
               if(!event.target.checked) {
               }
             }}/>{repo.title}
@@ -29,7 +30,7 @@ function Repository({repo}) {
           <div className={"repo-each-options"}>
             {options.map(option => (
               <label className="list-group-item">
-                <input className="form-check-input me-1" type="checkbox" defaultChecked={true}/>{option}
+                <input className="form-check-input me-1" type="checkbox" defaultChecked={false}/>{option}
               </label>
             ))}
 
@@ -67,7 +68,14 @@ function Repository({repo}) {
 function git() {
     return (
         <div id={"container"}>
-          <h3>레포지토리 별 상세 설정</h3>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>레포지토리 별 상세 설정</h4>
+            <div>
+              <Link to="/info">
+                <button className="nextButton">다음</button>
+              </Link>
+            </div>
+          </div>
           <div>
             {data.map(data => <Repository repo={data}/>)}
           </div>

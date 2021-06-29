@@ -1,0 +1,15 @@
+.info .nextButton {
+    text-decoration: none;
+    border: none;
+    background: #1b1f23;
+    color: white;
+    height: 45px;
+    width: 150px;
+    margin: 0px 0px 10px 0px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    box-sizing:border-box;
+    overflow:hidden;
+    border-radius: 0px;
+}

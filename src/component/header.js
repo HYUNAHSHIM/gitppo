@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const headerStyle = {
     display: "flex", 
@@ -21,7 +22,7 @@ const subtitleStyle = {
 function header() {
     return (
         <div style={headerStyle}>
-            <div style={logoStyle}>Gitppo</div>
+            <Link to="/"><div style={logoStyle}>Gitppo</div></Link>
             <div style={subtitleStyle}>Portfolio for software developers</div>
         </div>
     );

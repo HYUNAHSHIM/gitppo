@@ -3,6 +3,10 @@ import "./index.css";
 import head from "./head.png";
 import { Doughnut } from 'react-chartjs-2';
 import { data } from "./data.js";
+import GitImage from "./github.png";
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
 
 const langu = {
     labels: [
@@ -58,13 +62,13 @@ function Repo({ repo }) {
                 <div class="repo">
                     <h3>{repo.title}</h3>
                     <h6>{repo.description}</h6>
-                    <button class="tempbtn">C</button>
-                    <button class="tempbtn">Java</button>
-                    <button class="tempbtn">JavaScript</button>
+                    <span class="tempbtn">C</span>
+                    <span class="tempbtn">Java</span>
+                    <span class="tempbtn">JavaScript</span>
                 </div >
-                <div class="pic">
-                    <img src={repo.image} id="repopic"></img>
-                    <img src={repo.image} id="repopic"></img>
+                <div className="pic">
+                    <img src={GitImage} id="repopic"></img>
+                    <img src={GitImage} id="repopic"></img>
                 </div>
             </div>
         </div>
@@ -73,7 +77,7 @@ function Repo({ repo }) {
 
 function preview() {
     return (
-        <div id="container">
+        <div ref={ref}>
             <div class="box">
                 <div class="content">
                     <div class="flex">
@@ -104,6 +108,7 @@ function preview() {
                             <div class="c5">2013.03~2016.02</div>
                         </div>
                     </div>
+                    <div style={{width: "100%", height:"1px", margin: "30px 0px", background: "#eee"}}></div>
                     <div class="flex">
                         <div class="field">
                             <h4>기술분야</h4>
@@ -118,6 +123,7 @@ function preview() {
                             <Doughnut data={langu} />
                         </div>
                     </div>
+                    <div style={{width: "100%", height:"1px", margin: "30px 0px", background: "#eee"}}></div>
                     <div class="flex">
                         <div class="cert">
                             <h4>자격증</h4>
@@ -131,9 +137,11 @@ function preview() {
                             HSK 47급 2018.06.03<br></br>
                         </div>
                     </div>
+                    <div style={{width: "100%", height:"1px", margin: "30px 0px", background: "#eee"}}></div>
                     <div id="repo">
                         {data.map(data => <Repo repo={data} />)}
                     </div>
+                    <div style={{width: "100%", height:"1px", margin: "30px 0px", background: "#eee"}}></div>
                     <div id="story">
                         <h4>Story</h4>
                         <div class="story">
@@ -157,10 +165,15 @@ function preview() {
 
 function result() {
     return (
-        <div>
-            <div class="topflex">
-                <h3 id="top">미리보기</h3>
-                <button id="export">추출하기</button>
+        <div style={{padding: "40px"}}>
+            <div className="result">
+                <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                    <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>추가 내용 입력</h4>
+                    
+                    <Pdf targetRef={ref} filename="포트폴리오.pdf" x={-40} scale={0.6}>
+                        {({ toPdf }) => <button className="nextButton" onClick={toPdf}>추출하기</button>}
+                    </Pdf>
+                </div>
             </div>
             { preview()}
         </div >
