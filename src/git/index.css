@@ -1,0 +1,33 @@
+#container {
+    padding: 30px;
+}
+
+.repo-each-container {
+    border: 1px solid #828282;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.repo-each-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.repo-each-options {
+    /*display: flex;*/
+}
+
+.repo-each-options label {
+    border: none;
+    /*width: 50%;*/
+}
+
+.repo-each-inputs {
+    margin: 8px 16px;
+}
+
+.repo-each-inputs span {
+    width: max-content;
+    margin-top: 16px;
+    border-bottom: none;
+}
