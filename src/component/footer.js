@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -13,7 +12,10 @@ function footer() {
         <div style={footerStyle}>
             <div style={{fontSize: "1.2em", fontFamily: "notosans_bold"}}>Gitppo</div>
             <div>Copyright &copy; 2021 designed by Gitppo</div>
-            <a href="https://github.com/HYUNAHSHIM/gitppo" target="_blank" title="git page">
+            <a href="https://github.com/HYUNAHSHIM/gitppo"
+               target="_blank"
+               title="git page"
+               rel="noreferrer noopener">
                 <FontAwesomeIcon icon={faGithub} />
             </a>
         </div>

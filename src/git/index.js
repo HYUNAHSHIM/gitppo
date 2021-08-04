@@ -1,86 +1,80 @@
-import React, {useState} from "react";
+import {useEffect, useState} from "react";
+import { useHistory } from "react-router-dom";
+import Repository from "./Repository";
 import "./index.css";
 import {data} from "./data";
-import { Link } from "react-router-dom";
 
-const options = [
-  "README를 사용합니다.",
-  "팀 멤버를 보여줍니다.",
-]
 
-function Repository({repo}) {
-  const
-    [description, setDescription] = useState(repo.description),
-    [role, setRole] = useState(repo.role),
-    [skills, setSkills] = useState(repo.skills),
-    [implement, setImplement] = useState(repo.implement);
+function Git() {
+  // TODO : 전체 진행 상황을 스텝으로 나타내자.
+  const repoNum = data.length;
+  const history = useHistory();
+  const [curRepoIndex, setCurRepoIndex] = useState(0);
+  const [repositories, setRepositories] = useState(() => {
+    const temp = [];
+    for(let i = 0 ; i < repoNum ; i++) {
+      temp.push({
+        "title": data[i].title,
+        "repo": true,
+        "readme": true,
+        "team": true,
+        "description": "",
+        "role": "",
+        "skill": "",
+        "implement": ""
+      });
+    }
+    return temp;
+  });
+  const [curRepo, setCurRepo] = useState(repositories[curRepoIndex]);
 
-    return (
-      <div className={"repo-each-container"}>
-        <div className="list-group">
-          {/* 레포지토리 이름 */}
-          <label className="list-group-item repo-each-title" style={{border: "none", borderBottom: "1px solid #ccc", padding: "15px 10px"}}>
-            <input className="form-check-input me-1" type="checkbox" defaultChecked={false} onChange={event => {
-              if(!event.target.checked) {
-              }
-            }}/>{repo.title}
-          </label>
+  const handleRepoChange = (changed) => {
+    const temp = repositories;
+    temp[curRepoIndex] = changed;
+    setRepositories(temp);
+    setCurRepo(repositories[curRepoIndex]);
+  };
+  const handleButtonClick = (event) => {
+    if (event.target.name === "prevRepo") {
+      if(curRepoIndex === 0) setCurRepoIndex(repoNum-1);
+      else setCurRepoIndex((curRepoIndex-1) % repoNum);
+    }
+    else setCurRepoIndex((curRepoIndex+1) % repoNum);
+  };
 
-          {/* 레포지토리 별 옵션 */}
-          <div className={"repo-each-options"}>
-            {options.map(option => (
-              <label className="list-group-item">
-                <input className="form-check-input me-1" type="checkbox" defaultChecked={false}/>{option}
-              </label>
-            ))}
+  useEffect(() => setCurRepo(repositories[curRepoIndex]), [curRepoIndex, repositories]);
 
-            <div className="input-group-sm mb-3 repo-each-inputs">
-              <span className="input-group-text" id="inputGroup-sizing-sm">설명</span>
-              <textarea className="form-control"
-                     aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-sm"
-                     placeholder={"프로젝트에 대해서 설명해주세요."} value={description}
-                     onChange={event => setDescription(event.target.value)}/>
+  return (
+    <div id={"container"}>
 
-              <span className="input-group-text" id="inputGroup-sizing-sm">역할</span>
-              <textarea className="form-control"
-                     aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-sm"
-                     placeholder={"프로젝트에서 어떤 역할을 수행했는지 설명해주세요."} value={role}
-                     onChange={event => setRole(event.target.value)}/>
-
-              <span className="input-group-text" id="inputGroup-sizing-sm">사용 기술</span>
-              <textarea className="form-control"
-                     aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-sm"
-                     placeholder={"사용한 기술들에 대해서 설명해주세요."} value={skills}
-                     onChange={event => setSkills(event.target.value)}/>
-
-              <span className="input-group-text" id="inputGroup-sizing-sm">구현 내용</span>
-              <textarea className="form-control"
-                     aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-sm"
-                     placeholder={"어떤 기능들을 구현했는지 설명해주세요."} value={implement}
-                     onChange={event => setImplement(event.target.value)}/>
-            </div>
-          </div>
-        </div>
+      {/* 타이틀 */}
+      <div className={"subtitle"}>
+        <h4>레포지토리 별 상세 설정</h4>
+        <button className="nextButton"
+                onClick={() => history.push("/info", repositories)}>
+          저장
+        </button>
       </div>
-    );
+
+      {/* 레포지토리 내용 */}
+      <Repository repo={curRepo}
+                  handleRepoChange={handleRepoChange}/>
+
+      {/* 레포지토리 이전/다음 버튼 */}
+      <div className={"git-buttons"}>
+        <button className="nextButton"
+                name={"prevRepo"}
+                onClick={handleButtonClick}>
+          이전
+        </button>
+        <button className="nextButton"
+                name={"nextRepo"}
+                onClick={handleButtonClick}>
+          다음
+        </button>
+      </div>
+    </div>
+  );
 }
 
-function git() {
-    return (
-        <div id={"container"}>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>레포지토리 별 상세 설정</h4>
-            <div>
-              <Link to="/info">
-                <button className="nextButton">다음</button>
-              </Link>
-            </div>
-          </div>
-          <div>
-            {data.map(data => <Repository repo={data}/>)}
-          </div>
-        </div>
-    );
-}
-
-export default git;
+export default Git;
