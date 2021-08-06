@@ -5,6 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { data } from "./data.js";
 import GitImage from "./github.png";
 import Pdf from "react-to-pdf";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const ref = React.createRef();
 
