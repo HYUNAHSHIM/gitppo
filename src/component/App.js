@@ -7,6 +7,7 @@ import Main from "../main";
 import Info from "../info";
 import Git from "../git";
 import Result from "../result";
+import Callback from "../callback";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/info" component={Info} />
       <Route exact path="/git" component={Git} />
       <Route exact path="/Result" component={Result} />
+      <Route exact path="/callback" component={Callback} />
       <Footer />
     </Router>
   );
