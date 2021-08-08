@@ -29,7 +29,8 @@ function Callback({ history, location }) {
   }, [location, history]);
   return (
     <div style={{padding: "150px", textAlign: "center"}}>
-      Repository 정보를 가져오는 중입니다...
+      <p>Repository 정보를 가져오는 중입니다...</p>
+      <p>5분 정도 소요 될 수 있습니다. 잠시만 기다려주세요.</p>
     </div>
   );
 }
