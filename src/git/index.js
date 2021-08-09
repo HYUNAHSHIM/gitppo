@@ -2,31 +2,34 @@ import {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Repository from "./Repository";
 import "./index.css";
-import {data} from "./data";
 
+function Git({location}) {
+  const
+    infos = location.state,
+    history = useHistory();
 
-function Git() {
-  // TODO : 전체 진행 상황을 스텝으로 나타내자.
-  const repoNum = data.length;
-  const history = useHistory();
-  const [curRepoIndex, setCurRepoIndex] = useState(0);
-  const [repositories, setRepositories] = useState(() => {
+  const
+    [curRepoIndex, setCurRepoIndex] = useState(0),
+    [repositories, setRepositories] = useState([]),
+    [curRepo, setCurRepo] = useState();
+
+  useEffect(() => {
     const temp = [];
-    for(let i = 0 ; i < repoNum ; i++) {
+    infos.repos.map(repo => {
       temp.push({
-        "title": data[i].title,
-        "repo": true,
+        "title": repo.name,
+        "readme_content": repo.readme,
+        "description": repo.description,
+        "repo": repo.readme.length > 0,
         "readme": true,
-        "team": true,
-        "description": "",
         "role": "",
         "skill": "",
-        "implement": ""
+        "implement": "",
       });
-    }
-    return temp;
-  });
-  const [curRepo, setCurRepo] = useState(repositories[curRepoIndex]);
+    })
+    setRepositories(temp);
+    setCurRepo(repositories[curRepoIndex]);
+  }, [repositories, curRepoIndex]);
 
   const handleRepoChange = (changed) => {
     const temp = repositories;
@@ -36,13 +39,30 @@ function Git() {
   };
   const handleButtonClick = (event) => {
     if (event.target.name === "prevRepo") {
-      if(curRepoIndex === 0) setCurRepoIndex(repoNum-1);
-      else setCurRepoIndex((curRepoIndex-1) % repoNum);
+      if(curRepoIndex === 0) setCurRepoIndex(repositories.length-1);
+      else setCurRepoIndex((curRepoIndex-1) % repositories.length);
     }
-    else setCurRepoIndex((curRepoIndex+1) % repoNum);
+    else setCurRepoIndex((curRepoIndex+1) % repositories.length);
   };
+  const handleSaveButton = () => {
+    // 이전 페이지에서 전달받은 infos에 입력된 값들을 input에 대한 값으로 넣는다.
+    repositories.map(repo => {
+      if(repo.repo) {
+        const index = infos.repos.find(e => e.name === repo.title).index;
+        infos.repos[index].input = {
+          "readme": repo.readme,
+          "description": repo.description,
+          "role": repo.role,
+          "skill": repo.skill,
+          "implement": repo.implement,
+        };
+      }
+    });
 
-  useEffect(() => setCurRepo(repositories[curRepoIndex]), [curRepoIndex, repositories]);
+    // 수정된 infos를 다음 페이지로 넘긴다.
+    history.push("/info", infos);
+  }
+
 
   return (
     <div id={"container"}>
@@ -51,9 +71,7 @@ function Git() {
       <div className={"subtitle"}>
         <h4>레포지토리 별 상세 설정</h4>
         <button className="nextButton"
-                onClick={() => history.push("/info", repositories)}>
-          저장
-        </button>
+                onClick={handleSaveButton}>저장</button>
       </div>
 
       {/* 레포지토리 내용 */}
@@ -64,14 +82,10 @@ function Git() {
       <div className={"git-buttons"}>
         <button className="nextButton"
                 name={"prevRepo"}
-                onClick={handleButtonClick}>
-          이전
-        </button>
+                onClick={handleButtonClick}>이전</button>
         <button className="nextButton"
                 name={"nextRepo"}
-                onClick={handleButtonClick}>
-          다음
-        </button>
+                onClick={handleButtonClick}>다음</button>
       </div>
     </div>
   );

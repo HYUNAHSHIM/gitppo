@@ -56,8 +56,8 @@
 .main .wrapper #button:before,#button:after{
     content:'';
     position:absolute;
-    top:0;
-    right:0;
+    top:45px;
+    left:0;
     height:2px;
     width:0;
     background: #1b1f23;

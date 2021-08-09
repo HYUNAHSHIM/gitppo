@@ -38,25 +38,6 @@
     cursor: pointer;
 }
 
-#container .nextButton {
-    --buttonColor: #1b1f23;
-    text-decoration: none;
-    border: none;
-    background: var(--buttonColor);
-    color: white;
-    height: 45px;
-    width: 150px;
-    text-align:center;
-    cursor:pointer;
-    position:relative;
-    box-sizing:border-box;
-    overflow:hidden;
-}
-
-#container .nextButton:hover {
-    opacity: 0.5;
-}
-
 .git-buttons {
     display: flex;
     justify-content: space-between;
@@ -77,4 +58,23 @@
     font-weight: 600;
 
     border-left: 6px solid #444;
+}
+
+/* REAMDE 미리보기 */
+.repo-each-container .list-group-item {
+    padding-bottom: 0;
+}
+.readme-preview-button {
+    font-size: 0.9em;
+    cursor: pointer;
+    color: #282c34;
+}
+.readme-preview-button:hover {
+    color: #61dafb;
+    text-decoration: underline;
+}
+
+.readme-preview-container {
+    margin: 0 1rem;
+    padding-left: 1.25em;
 }

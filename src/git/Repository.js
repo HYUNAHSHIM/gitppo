@@ -1,4 +1,10 @@
+import ReactMarkdown from "react-markdown";
+import "./index.css";
+import {useState} from "react";
+
 function Repository({repo, handleRepoChange}) {
+  const [showReadmePreview, setShowReadmePreview] = useState(false);
+
   const handleInputChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -6,6 +12,9 @@ function Repository({repo, handleRepoChange}) {
     // 레포를 먼저 체크해야 함.
     if(!repo.repo && name !== "repo")
       return window.alert("레포지토리를 먼저 사용함으로 체크 해주세요.");
+
+    // if(name === "readme" && repo.readme_content.length === 0)
+    //   return window.alert("README 파일이 없습니다.");
 
     // 변경 내용 저장
     handleRepoChange({
@@ -19,9 +28,13 @@ function Repository({repo, handleRepoChange}) {
         ...repo,
         "repo": false,
         "readme": false,
-        "team": false,
       });
   };
+  const handleOnKeyUp = (obj) => {
+    // 엔터 시 input box의 높이를 늘림.
+    obj.currentTarget.style.height = "1px";
+    obj.currentTarget.style.height = `${obj.currentTarget.scrollHeight+16}px`;
+  }
 
   return (
     <div className={"repo-each-container list-group"}>
@@ -47,17 +60,22 @@ function Repository({repo, handleRepoChange}) {
                  name="readme"
                  checked={repo.readme}
                  onChange={handleInputChange}/>
-          README의 내용을 반영합니다.
+          <span>README의 내용을 반영합니다.</span>
         </label>
 
-        <label className="list-group-item">
-          <input className="form-check-input me-1"
-                 type="checkbox"
-                 name="team"
-                 checked={repo.team}
-                 onChange={handleInputChange}/>
-          팀 멤버를 반영합니다.
-        </label>
+        {/* README 미리보기 */}
+        <div className={"readme-preview-container"}>
+          <div className={"readme-preview-button"}
+               onClick={() => setShowReadmePreview(!showReadmePreview)}>
+            > README 미리보기
+          </div>
+          <div className={"form-control"}
+               style={{display: showReadmePreview ? "block": "none"}}>
+            <ReactMarkdown>
+              {repo.readme_content === undefined ? "README가 없습니다.": repo.readme_content}
+            </ReactMarkdown>
+          </div>
+        </div>
 
         {/* 서술 옵션 */}
         <div className="input-group-sm mb-3 repo-each-inputs">
@@ -69,7 +87,8 @@ function Repository({repo, handleRepoChange}) {
                     placeholder={"프로젝트에 대해서 설명해주세요."}
                     name={"description"}
                     value={repo.description}
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    onKeyUp={handleOnKeyUp}/>
 
           <span className="input-group-text"
                 id="inputGroup-sizing-sm">역할</span>
@@ -79,7 +98,8 @@ function Repository({repo, handleRepoChange}) {
                     placeholder={"프로젝트에서 어떤 역할을 수행했는지 설명해주세요."}
                     name={"role"}
                     value={repo.role}
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    onKeyUp={handleOnKeyUp}/>
 
           <span className="input-group-text"
                 id="inputGroup-sizing-sm">사용 기술</span>
@@ -89,7 +109,8 @@ function Repository({repo, handleRepoChange}) {
                     placeholder={"사용한 기술들에 대해서 설명해주세요."}
                     name={"skill"}
                     value={repo.skill}
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    onKeyUp={handleOnKeyUp}/>
 
           <span className="input-group-text"
                 id="inputGroup-sizing-sm">구현 내용</span>
@@ -99,7 +120,8 @@ function Repository({repo, handleRepoChange}) {
                     placeholder={"어떤 기능들을 구현했는지 설명해주세요."}
                     name={"implement"}
                     value={repo.implement}
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    onKeyUp={handleOnKeyUp}/>
         </div>
       </div>
     </div>
