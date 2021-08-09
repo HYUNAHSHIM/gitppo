@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import Animation from "./Animation";
+import Loading from "../Loading";
 
 require('dotenv').config();
 
@@ -46,7 +46,7 @@ function Callback({ history, location }) {
         : <div>
             <p>Repository 정보를 가져오는 중입니다...</p>
             <p>최대 5분 정도 소요 될 수 있습니다. 잠시만 기다려주세요.</p>
-            <Animation />
+            <Loading />
           </div>
       }
     </div>

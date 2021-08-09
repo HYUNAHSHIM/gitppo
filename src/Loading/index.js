@@ -1,7 +1,7 @@
-import "./Animation.css";
+import "./index.css";
 
 
-function Animation() {
+function Loading() {
   const animation = (id) => {
     return {animation: `fadeInOutLong 300s linear ${8-id}s`}
   }
@@ -70,4 +70,4 @@ function Animation() {
 
 }
 
-export default Animation;
+export default Loading;

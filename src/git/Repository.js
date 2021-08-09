@@ -13,8 +13,8 @@ function Repository({repo, handleRepoChange}) {
     if(!repo.repo && name !== "repo")
       return window.alert("레포지토리를 먼저 사용함으로 체크 해주세요.");
 
-    // if(name === "readme" && repo.readme_content.length === 0)
-    //   return window.alert("README 파일이 없습니다.");
+    if(name === "readme" && !repo.readme_content)
+      return window.alert("README 내용이 없습니다.");
 
     // 변경 내용 저장
     handleRepoChange({

@@ -1,35 +1,38 @@
 import {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Repository from "./Repository";
+import Loading from "../Loading";
 import "./index.css";
 
 function Git({location}) {
   const
-    infos = location.state,
-    history = useHistory();
-
-  const
-    [curRepoIndex, setCurRepoIndex] = useState(0),
-    [repositories, setRepositories] = useState([]),
+    history = useHistory(),
+    [curRepoIndex, setCurRepoIndex] = useState(),
+    [repositories, setRepositories] = useState(),
     [curRepo, setCurRepo] = useState();
 
   useEffect(() => {
-    const temp = [];
-    infos.repos.map(repo => {
-      temp.push({
-        "title": repo.name,
-        "readme_content": repo.readme,
-        "description": repo.description,
-        "repo": repo.readme.length > 0,
-        "readme": true,
-        "role": "",
-        "skill": "",
-        "implement": "",
-      });
-    })
-    setRepositories(temp);
-    setCurRepo(repositories[curRepoIndex]);
-  }, [repositories, curRepoIndex]);
+    const fetchRepo = () => {
+      const infos = location.state.data;
+      return infos.repos.map(repo => {
+        return {
+          "title": repo.name,
+          "readme_content": repo.readme,
+          "description": repo.description,
+          "repo": true,
+          "readme": repo.readme?.length > 0,
+          "role": "",
+          "skill": "",
+          "implement": "",
+        }
+      })
+    }
+    setRepositories(fetchRepo());
+    setCurRepoIndex(0);
+  }, []);
+  useEffect(() =>
+    repositories && setCurRepo(repositories[curRepoIndex]),
+    [repositories, curRepoIndex]);
 
   const handleRepoChange = (changed) => {
     const temp = repositories;
@@ -46,30 +49,42 @@ function Git({location}) {
   };
   const handleSaveButton = () => {
     // 이전 페이지에서 전달받은 infos에 입력된 값들을 input에 대한 값으로 넣는다.
-    repositories.map(repo => {
-      if(repo.repo) {
-        const index = infos.repos.find(e => e.name === repo.title).index;
-        infos.repos[index].input = {
+    const infos = location.state.data;
+    const result = repositories
+      .filter(repo => repo.repo)
+      .map(repo => {
+        const ordinary = infos.repos.find(e => e.name === repo.title);
+        return {
+          ...ordinary,
+          'input': {
           "readme": repo.readme,
           "description": repo.description,
           "role": repo.role,
           "skill": repo.skill,
           "implement": repo.implement,
-        };
-      }
+        }
+      };
     });
 
     // 수정된 infos를 다음 페이지로 넘긴다.
-    history.push("/info", infos);
+    history.push("/info", result);
   }
 
-
-  return (
+  if(curRepo === undefined) {
+    return (
+      <center id={"container"}>
+        <p>데이터를 준비 중 입니다.</p>
+        <Loading />
+        <br/>
+      </center>
+    );
+  }
+  else return (
     <div id={"container"}>
 
       {/* 타이틀 */}
       <div className={"subtitle"}>
-        <h4>레포지토리 별 상세 설정</h4>
+        <h4>레포지토리 별 상세 설정 <span>{curRepoIndex+1}/{repositories.length}</span></h4>
         <button className="nextButton"
                 onClick={handleSaveButton}>저장</button>
       </div>
