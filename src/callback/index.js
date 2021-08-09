@@ -11,11 +11,13 @@ function Callback({ history, location }) {
         ignoreQueryPrefix: true,
       });
 
+      console.log("code: ", code);
+
       try {
         const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth`, {
           code,
         });
-        console.log(data);
+        console.log("data: ", data);
         history.push({
           pathname: "/git",
           state: {data: data}
