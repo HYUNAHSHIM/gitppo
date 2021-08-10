@@ -6,8 +6,6 @@ import { data } from "./data.js";
 import GitImage from "./github.png";
 import domtoimage from "dom-to-image";
 import jsPDF from 'jspdf';
-import $ from 'jquery';
-window.$ = $;
 
 const ref = React.createRef();
 
