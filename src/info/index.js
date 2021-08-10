@@ -8,9 +8,11 @@ import School from "./School";
 import Skill from "./Skill";
 import Career from "./Career";
 
-function User() {
+function User({location}) {
     const [ name, setName ] = useState("");
-    
+
+    const history = useHistory();
+
     useEffect(() => {
         console.log({
             name
@@ -20,8 +22,6 @@ function User() {
     const onChangename = e => {
         setName(e.target.value);
     };
-
-    const history = useHistory();
     
     return (
         <div className="info">
