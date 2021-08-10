@@ -23,7 +23,7 @@
     align-items: center;
 }
 
-.box {
+#box {
     /*background-image: url("./bg.png");
     background-size: cover;*/
     border: 1px solid #bbb;
@@ -36,21 +36,36 @@
 
 .flex {
     display: flex;
-    position: relative;
+}
+
+.profile {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.info {
+    margin: 0px 0px 30px 30px;
+    width: calc(100%/3*2);
 }
 
 .intro {
-    margin: 30px;
+    text-align: right;
 }
 
 #head {
     width:200px;
+    height: 200px;
     border: 5px solid var(--yellow);
     border-radius: 50%;
 }
 
-.school, .career, .field, .stack, .lang, .cert, .foreign {
+.school, .career, .cert, .foreign {
     margin: 50px;
+    position: relative;
+}
+
+.field, .stack, .lang {
+    margin: 20px;
     position: relative;
 }
 
@@ -72,7 +87,7 @@ hr {
 }
 .s2 {
     position: absolute;
-    left:450px;
+    left:350px;
     top:3px;
     width: 20px;
     height: 20px;
@@ -81,7 +96,7 @@ hr {
 }
 .s3 {
     position: absolute;
-    left:750px;
+    left:550px;
     top:3px;
     width: 20px;
     height: 20px;
@@ -100,7 +115,7 @@ hr {
 }
 .c2 {
     position: absolute;
-    left:300px;
+    left:250px;
     top:3px;
     width: 20px;
     height: 20px;
@@ -109,7 +124,7 @@ hr {
 }
 .c3 {
     position: absolute;
-    left:500px;
+    left:400px;
     top:3px;
     width: 20px;
     height: 20px;
@@ -118,7 +133,7 @@ hr {
 }
 .c4 {
     position: absolute;
-    left:700px;
+    left:550px;
     top:3px;
     width: 20px;
     height: 20px;
@@ -181,4 +196,13 @@ hr {
     box-sizing:border-box;
     overflow:hidden;
     border-radius: 0px;
+}
+
+.name {
+    color: var(--yellow);
+    font-weight: 900;
+}
+
+.slogan, .sns, .name, .birth {
+    text-align: right;
 }
