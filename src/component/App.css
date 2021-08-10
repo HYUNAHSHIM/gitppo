@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.nextButton {
+  --buttonColor: #1b1f23;
+  text-decoration: none;
+  border: none;
+  background: var(--buttonColor);
+  color: white;
+  height: 45px;
+  width: 150px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+.nextButton:hover {
+  opacity: 0.5;
+  transition: all 0.4s;
+}

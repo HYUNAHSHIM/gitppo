@@ -1,32 +1,38 @@
 import {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Repository from "./Repository";
+import Loading from "../Loading";
 import "./index.css";
-import {data} from "./data";
 
+function Git({location}) {
+  const
+    history = useHistory(),
+    [curRepoIndex, setCurRepoIndex] = useState(),
+    [repositories, setRepositories] = useState(),
+    [curRepo, setCurRepo] = useState();
 
-function Git() {
-  // TODO : 전체 진행 상황을 스텝으로 나타내자.
-  const repoNum = data.length;
-  const history = useHistory();
-  const [curRepoIndex, setCurRepoIndex] = useState(0);
-  const [repositories, setRepositories] = useState(() => {
-    const temp = [];
-    for(let i = 0 ; i < repoNum ; i++) {
-      temp.push({
-        "title": data[i].title,
-        "repo": true,
-        "readme": true,
-        "team": true,
-        "description": "",
-        "role": "",
-        "skill": "",
-        "implement": ""
-      });
+  useEffect(() => {
+    const fetchRepo = () => {
+      const infos = location.state.data;
+      return infos.repos.map(repo => {
+        return {
+          "title": repo.name,
+          "readme_content": repo.readme,
+          "description": repo.description,
+          "repo": true,
+          "readme": repo.readme?.length > 0,
+          "role": "",
+          "skill": "",
+          "implement": "",
+        }
+      })
     }
-    return temp;
-  });
-  const [curRepo, setCurRepo] = useState(repositories[curRepoIndex]);
+    setRepositories(fetchRepo());
+    setCurRepoIndex(0);
+  }, []);
+  useEffect(() =>
+    repositories && setCurRepo(repositories[curRepoIndex]),
+    [repositories, curRepoIndex]);
 
   const handleRepoChange = (changed) => {
     const temp = repositories;
@@ -36,24 +42,51 @@ function Git() {
   };
   const handleButtonClick = (event) => {
     if (event.target.name === "prevRepo") {
-      if(curRepoIndex === 0) setCurRepoIndex(repoNum-1);
-      else setCurRepoIndex((curRepoIndex-1) % repoNum);
+      if(curRepoIndex === 0) setCurRepoIndex(repositories.length-1);
+      else setCurRepoIndex((curRepoIndex-1) % repositories.length);
     }
-    else setCurRepoIndex((curRepoIndex+1) % repoNum);
+    else setCurRepoIndex((curRepoIndex+1) % repositories.length);
   };
+  const handleSaveButton = () => {
+    // 이전 페이지에서 전달받은 infos에 입력된 값들을 input에 대한 값으로 넣는다.
+    const infos = location.state.data;
+    const result = repositories
+      .filter(repo => repo.repo)
+      .map(repo => {
+        const ordinary = infos.repos.find(e => e.name === repo.title);
+        return {
+          ...ordinary,
+          'input': {
+          "readme": repo.readme,
+          "description": repo.description,
+          "role": repo.role,
+          "skill": repo.skill,
+          "implement": repo.implement,
+        }
+      };
+    });
 
-  useEffect(() => setCurRepo(repositories[curRepoIndex]), [curRepoIndex, repositories]);
+    // 수정된 infos를 다음 페이지로 넘긴다.
+    history.push("/info", result);
+  }
 
-  return (
+  if(curRepo === undefined) {
+    return (
+      <center id={"container"}>
+        <p>데이터를 준비 중 입니다.</p>
+        <Loading />
+        <br/>
+      </center>
+    );
+  }
+  else return (
     <div id={"container"}>
 
       {/* 타이틀 */}
       <div className={"subtitle"}>
-        <h4>레포지토리 별 상세 설정</h4>
+        <h4>레포지토리 별 상세 설정 <span>{curRepoIndex+1}/{repositories.length}</span></h4>
         <button className="nextButton"
-                onClick={() => history.push("/info", repositories)}>
-          저장
-        </button>
+                onClick={handleSaveButton}>저장</button>
       </div>
 
       {/* 레포지토리 내용 */}
@@ -64,14 +97,10 @@ function Git() {
       <div className={"git-buttons"}>
         <button className="nextButton"
                 name={"prevRepo"}
-                onClick={handleButtonClick}>
-          이전
-        </button>
+                onClick={handleButtonClick}>이전</button>
         <button className="nextButton"
                 name={"nextRepo"}
-                onClick={handleButtonClick}>
-          다음
-        </button>
+                onClick={handleButtonClick}>다음</button>
       </div>
     </div>
   );
