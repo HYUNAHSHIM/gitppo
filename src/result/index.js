@@ -92,12 +92,20 @@ function preview() {
         <div ref={ref}>
             <div id="box">
                 <div className="content">
-                    <div className="flex">
-                        <img src={head} id="head"></img>
-                        <div className="intro">
-                            <h2>안녕하세요! 개발자 하마입니다.</h2>
-                            <h5>저는... 자기소개 중이에요 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세</h5>
-                            http://github.com/000 | http://facebook/000 | http://tistory.com/000
+                    <div className="profile">
+                        <div className="img">
+                            <img src={head} id="head"></img>
+                        </div>
+                        <div className="info">
+                            <div className="slogan"><h4>안녕하세요! 성장하는 개발자 하마입니다.</h4></div>
+                            <div className="name">
+                                <h1>김하마 Kim Hama</h1>
+                            </div>
+                            <div className="birth">
+                                <h5>1999.10.04</h5>
+                            </div>
+                            <div className="sns">http://github.com/000 | http://facebook/000 | http://tistory.com/000</div><br></br>
+                            <div className="intro"><h5>끊임없이 배우고 새로운 것에 도전하며 발전하는 개발자입니다</h5></div>
                         </div>
                     </div>
                     <div className="school">
