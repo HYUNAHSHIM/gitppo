@@ -1,90 +1,68 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import Birth from "./Calender1";
+import School from "./School";
+import Skill from "./Skill";
+import Career from "./Career";
 
-const infoStyle = {
-    margin: "40px"
-};
+function User() {
+    const [ name, setName ] = useState("");
+    
+    useEffect(() => {
+        console.log({
+            name
+        });
+    });
 
-const contentStyle = {
-    fontFamily: "notosans_bold",
-    fontSize: "1.1em",
-    margin: "40px 0px"
-}; 
+    const onChangename = e => {
+        setName(e.target.value);
+    };
 
-const inputStyle = {
-    width: "200px",
-    outline: "none",
-    borderTop: "1px",
-    borderLeft: "1px",
-    borderRight: "1px",
-    margin: "20px",
-    fontSize: "0.9em",
-    fontFamily: "notosans_normal"
-};
-
-const detailStyle1 = {
-    width: "500px",
-    height: "60px",
-    marginTop: "-45px",
-    marginLeft: "58px"
-}
-
-const detailStyle2 = {
-    width: "500px",
-    height: "200px",
-    marginTop: "-45px",
-    marginLeft: "58px"
-};
-
-const detailStyle3 = {
-    width: "800px",
-    height: "200px",
-    marginTop: "-45px",
-    marginLeft: "58px"
-};
-
-function info() {
+    const history = useHistory();
+    
     return (
-        <div className="info" style={infoStyle}>
-            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                <h4 style={{margin: "10px 0px 30px 0px", fontSize:"1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444"}}>추가 내용 입력</h4>
-                <Link to="/result"><Button className="nextButton">저장하기</Button></Link>
+        <div className="info">
+
+            <div className="infoStyle">
+                <h4 className="title">추가 내용 입력</h4>
+                <Button className="nextButton" 
+                onClick={() => history.push("/result")}>저장하기</Button>
             </div>
-            <div style={contentStyle}>이름
-                <div style={detailStyle1}>
-                    <input style={inputStyle}></input>
+
+            <div className="contentStyle">이름
+                <div className="detailStyle1">
+                    <input className="inputStyle" value={name} onChange={onChangename}/>
                 </div>
             </div>
-            <div style={contentStyle}>생년월일
-                <div style={detailStyle1}>
-                    <input style={inputStyle}></input>
+
+            <div className="contentStyle">생년월일
+                <div className="detailStyle1">
+                    <Birth/>
                 </div>
             </div>
-            <div style={contentStyle}>학력
-                <div style={detailStyle2}>
-                    <input style={inputStyle} placeholder="고등학교"></input><input style={inputStyle} placeholder="한양고등학교"></input>
-                    <input style={inputStyle} placeholder="대학교"></input><input style={inputStyle} placeholder="한양대학교"></input>
-                    <input style={inputStyle} placeholder="대학원"></input><input style={inputStyle} placeholder="한양대학원"></input>
+
+            <div className="contentStyle">학력
+                <div className="detailStyle2">
+                    <School/>
                 </div>
             </div>
-            <div style={contentStyle}>기술
-                <div style={detailStyle2}>
-                    <input style={inputStyle} placeholder="C++"></input><input style={inputStyle} placeholder="초급"></input>
-                    <input style={inputStyle} placeholder="Python"></input><input style={inputStyle} placeholder="초급"></input>
-                    <input style={inputStyle} placeholder="Java"></input><input style={inputStyle} placeholder="초급"></input>
+
+            <div className="contentStyle">기술
+                <div className="detailStyle2">
+                    <Skill/>
                 </div>
+            </div>   
+
+            <div className="contentStyle">경력
+                <div className="detailStyle3">
+                    <Career/>
+                </div> 
             </div>
-            <div style={contentStyle}>경력
-                <div style={detailStyle3}>
-                    <input style={inputStyle} placeholder="회사명"></input><input style={inputStyle} placeholder="2021.00.00 ~ 2021.00.00"></input><input style={inputStyle} placeholder="업무 내용"></input>
-                    <input style={inputStyle} placeholder="회사명"></input><input style={inputStyle} placeholder="2021.00.00 ~ 2021.00.00"></input><input style={inputStyle} placeholder="업무 내용"></input>
-                    <input style={inputStyle} placeholder="회사명"></input><input style={inputStyle} placeholder="2021.00.00 ~ 2021.00.00"></input><input style={inputStyle} placeholder="업무 내용"></input>
-                </div>
-            </div>
-        </div>
+
+        </div> 
     );
-}
-export default info;
+};
+export default User;

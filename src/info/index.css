@@ -1,3 +1,122 @@
+.info {
+    margin: 40px;
+}
+
+.infoStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin: 10px 0px 30px 0px;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 4px 10px; 
+    border-left: 6px solid #444;
+}
+
+.contentStyle {
+    font-family: notosans_bold;
+    font-size: 1.1em;
+    margin: 40px 0px;
+    padding-bottom: 10px;
+}
+
+.birthStyle {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.inputStyle {
+    width: 200px;
+    outline: none;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    margin: 20px;
+    font-size: 0.9em;
+    font-family: notosans_normal;
+    border-bottom: solid 1px #808080;
+}
+
+input:focus{
+    border-bottom: 2.5px solid black;
+}
+
+.levelStyle {
+    margin-left: 250px;
+    margin-top: -76px;
+}
+
+.startStyle {   
+    padding-left: 250px;
+    margin-bottom: -55px;
+    margin-top: -68px;
+}
+
+.endStyle {
+    margin-left: 500px;
+    margin-bottom: -40px;
+    margin-top: 7px;
+}
+
+.textStyle {
+    width: 400px;
+    outline: none;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    margin: 39px;
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-family: notosans_normal;
+    border-bottom: solid 1px #808080;
+}
+
+.textStyle.input:focus{
+    border-bottom: 2.5px solid black;
+}
+
+.companyStyle{
+    margin-top: -47px;
+}
+
+.workStyle {
+    margin-left: 730px;
+    margin-top: -66px;
+}
+
+.careerStyle {
+    text-align: "inline-block";
+    margin-top: 20px;
+}
+
+.buttonStyle {
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.detailStyle1 {
+    width: 500px;
+    height: 60px;
+    margin-top: -45px;
+    margin-left: 58px;
+}
+
+.detailStyle2 {
+    width: 1000px;
+    margin-top: -45px;
+    margin-left: 58px;
+}
+
+.detailStyle3 {
+    width: 2000px;
+    margin-top: -45px;
+    margin-left: 58px;
+}
+
 .info .nextButton {
     text-decoration: none;
     border: none;
@@ -12,4 +131,16 @@
     box-sizing:border-box;
     overflow:hidden;
     border-radius: 0px;
+}
+
+.skillButton {
+    margin-left: 400px;
+    margin-top: -38px;
+    margin-bottom: 33px;
+}
+
+.careerButton {
+    margin-left: 1165px;
+    margin-top: -70px;
+    margin-bottom: 40px;
 }

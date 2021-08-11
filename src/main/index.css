@@ -6,15 +6,15 @@
 }
 .main .wrapper {
     margin-top: 150px;
-    padding: 30px;
+    padding: 17px 30px;
+    height: 80px;
     border: 1px solid #ccc;
-    height: 300px;
     background: white;
 }
 .main .wrapper .title {
     font-size: 1.2em;
     font-weight: 700;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
 }
 .main .wrapper .inputContainer {
     padding-bottom: 35px;
@@ -44,7 +44,7 @@
     position:relative;
     height:45px;
     font-size:1em;
-    padding:0 108px;
+    padding: 10px 108px 0px 108px;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
@@ -56,8 +56,8 @@
 .main .wrapper #button:before,#button:after{
     content:'';
     position:absolute;
-    top:0;
-    right:0;
+    top:45px;
+    left:0;
     height:2px;
     width:0;
     background: #1b1f23;
