@@ -6,8 +6,6 @@ import { data } from "./data.js";
 import GitImage from "./github.png";
 import domtoimage from "dom-to-image";
 import jsPDF from 'jspdf';
-import $ from 'jquery';
-window.$ = $;
 
 const ref = React.createRef();
 
@@ -27,21 +25,6 @@ const langu = {
     }]
 };
 
-const data2 = {
-    labels: [
-        'WEB',
-        'ANDROID',
-        'IOS'
-    ],
-    datasets: [{
-        data: [30, 14, 56],
-        backgroundColor: [
-            '#FFDF3E',
-            '#C1C1C1',
-            '#616161'
-        ]
-    }]
-};
 const data3 = {
     labels: [
         'Java',
@@ -78,10 +61,6 @@ function Repo({ repo }) {
                     <span className="tempbtn">Java</span>
                     <span className="tempbtn">JavaScript</span>
                 </div >
-                <div className="pic">
-                    <img src={GitImage} id="repopic"></img>
-                    <img src={GitImage} id="repopic"></img>
-                </div>
             </div>
         </div>
     )
@@ -97,15 +76,15 @@ function preview() {
                             <img src={head} id="head"></img>
                         </div>
                         <div className="info">
-                            <div className="slogan"><h4>안녕하세요! 성장하는 개발자 하마입니다.</h4></div>
+                            <br></br>
+                            <div className="slogan"><h4>안녕하세요! 개발자 하마입니다.</h4></div>
                             <div className="name">
-                                <h1>김하마 Kim Hama</h1>
+                                <h1>김하마</h1>
                             </div>
                             <div className="birth">
                                 <h5>1999.10.04</h5>
                             </div>
-                            <div className="sns">http://github.com/000 | http://facebook/000 | http://tistory.com/000</div><br></br>
-                            <div className="intro"><h5>끊임없이 배우고 새로운 것에 도전하며 발전하는 개발자입니다</h5></div>
+                            <div className="sns">http://github.com/000</div><br></br>
                         </div>
                     </div>
                     <div className="school">
@@ -129,10 +108,6 @@ function preview() {
                     </div>
                     <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
                     <div className="flex">
-                        <div className="field">
-                            <h4>기술분야</h4>
-                            <Doughnut data={data2} options={options} style={style} />
-                        </div>
                         <div class="stack">
                             <h4>기술스택</h4>
                             <Doughnut data={data3} options={options} style={style} />
@@ -143,27 +118,9 @@ function preview() {
                         </div>
                     </div>
                     <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
-                    <div className="flex">
-                        <div className="cert">
-                            <h4>자격증</h4>
-                            정보처리기능사 2급 2020.06.14 한국산업인력공단<br></br>
-                            IIQ OA MASTER 2018.06.03 한국생산성본부<br></br>
-                            컴퓨터활용능력 3급 2017.02.02 대한상공회의소<br></br>
-                            정보처리기능사 2급 2020.06.14 한국산업인력공단<br></br>
-                            IIQ OA MASTER 2018.06.03 한국생산성본부<br></br>
-                            컴퓨터활용능력 3급 2017.02.02 대한상공회의소
-                        </div>
-                        <div className="foreign">
-                            <h4>어학능력</h4>
-                            TOEIC 900점 2020.06.14<br></br>
-                            HSK 47급 2018.06.03<br></br>
-                        </div>
-                    </div>
-                    <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
                     <div id="repo">
                         {data.map(data => <Repo repo={data} />)}
                     </div>
-                    <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
                     <div id="story">
                         <h4>Story</h4>
                         <div className="story">
@@ -210,10 +167,6 @@ function result() {
             <div className="result">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <h4 style={{ margin: "10px 0px 30px 0px", fontSize: "1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444" }}>포트폴리오 완성</h4>
-
-                    {/* <Pdf targetRef={ref} filename="포트폴리오.pdf" x={-10} y={20} scale={0.6}>
-                        {({ toPdf }) => <button className="nextButton" onClick={toPdf}>추출하기</button>}
-                    </Pdf> */}
                     <button className="nextButton" onClick={toPdf}>추출하기</button>
                 </div>
             </div>

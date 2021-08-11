@@ -48,10 +48,6 @@
     width: calc(100%/3*2);
 }
 
-.intro {
-    text-align: right;
-}
-
 #head {
     width:200px;
     height: 200px;
@@ -59,14 +55,19 @@
     border-radius: 50%;
 }
 
-.school, .career, .cert, .foreign {
+.school, .career {
     margin: 50px;
     position: relative;
 }
-
-.field, .stack, .lang {
+.stack, .lang {
     margin: 20px;
     position: relative;
+    width: 50%;
+    text-align: center;
+}
+
+canvas {
+    margin: 0 auto;
 }
 
 hr {
@@ -167,19 +168,12 @@ hr {
     font-size: 0.75em;
 }
 
-.pic {
-    position: absolute;
-    right: 0px;
-}
-
-#repopic {
-    width:300px;
-    height:150px;
-    margin: 20px;
-}
-
 .story {
     margin: 80px 20px 80px 20px;
+}
+
+#story {
+    margin-top: 50px;
 }
 
 .result .nextButton {
