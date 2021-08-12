@@ -76,7 +76,7 @@ function Work({ company }) {
     const edate = company.end.split("-");
     const date = sdate[0] + "." + sdate[1] + "-" + edate[0] + "." + edate[1]
     return (
-        <span className="c">{date}</span>
+        <div className="c">{date}</div>
     )
 }
 
@@ -93,7 +93,6 @@ function Repo({ repo }) {
     for (let i = 0; i < keys.length; i++) {
         langlist.push(keys[i])
     }
-    console.log(repo)
     return (
         <div className="project flex">
             <div className="repo">
@@ -213,7 +212,8 @@ function toPdf() {
     if (pdf) {
         domtoimage.toPng(input, {
             bgcolor: 'white',
-            width: 1450,
+            width: input.offsetWidth + 500,
+            height: input.offsetHeight + 200,
         }).then(
             imgData => {
                 pdf.addImage(imgData, 'PNG', 0, 0, width, height - 10);

@@ -24,14 +24,13 @@
 }
 
 #box {
-    /*background-image: url("./bg.png");
-    background-size: cover;*/
-    border: 1px solid #bbb;
     margin: 30px 230px;
 }
 
 .content {
     margin: 50px;
+    border: 1px solid #bbb;
+    padding: 50px;
 }
 
 .flex {
@@ -104,6 +103,7 @@ hr {
 
 .repo {
     margin: 20px 0px 80px 30px;
+    width: 500px;
 }
 
 .tempbtn {
