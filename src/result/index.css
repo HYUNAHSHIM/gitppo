@@ -48,10 +48,6 @@
     width: calc(100%/3*2);
 }
 
-.intro {
-    text-align: right;
-}
-
 #head {
     width:200px;
     height: 200px;
@@ -59,99 +55,51 @@
     border-radius: 50%;
 }
 
-.school, .career, .cert, .foreign {
+.school, .career {
     margin: 50px;
     position: relative;
 }
-
-.field, .stack, .lang {
+.stack, .lang {
     margin: 20px;
     position: relative;
+    width: 50%;
+    text-align: center;
+}
+
+canvas {
+    margin: 0 auto;
 }
 
 hr {
     margin: 10px;
     margin-left: 20px;
-    width: 80%;
+    width: 100%;
     border: solid 3px grey;
 }
 
-.s1 {
-    position: absolute;
-    left:150px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
-}
-.s2 {
-    position: absolute;
-    left:350px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
-}
-.s3 {
-    position: absolute;
-    left:550px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
+.readme {
+    width: 40%;
+    padding: 10px;
 }
 
-.c1 {
-    position: absolute;
-    left:100px;
-    top:3px;
+.c {
+    position:relative;
+    right:500px;
+    background-color: var(--yellow);
+    font-size: 1em;
     width: 20px;
     height: 20px;
     border: 10px solid var(--yellow);
     border-radius: 100%;
-}
-.c2 {
-    position: absolute;
-    left:250px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
-}
-.c3 {
-    position: absolute;
-    left:400px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
-}
-.c4 {
-    position: absolute;
-    left:550px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
-}
-.c5 {
-    position: absolute;
-    left:900px;
-    top:3px;
-    width: 20px;
-    height: 20px;
-    border: 10px solid var(--yellow);
-    border-radius: 100%;
+    margin-right: 50px;
 }
 
 .project {
+    padding: 10px;
+    padding-bottom: 20px;
+    margin: 10px;
     border-bottom: 1px solid #eee;
+    justify-content: space-between;
 }
 
 .repo {
@@ -162,24 +110,17 @@ hr {
     background-color: #1b1f23;
     color: white;
     border-radius: 10px;
-    margin-left: 5px;
+    margin-right: 5px;
     padding: 3px 10px;
     font-size: 0.75em;
 }
 
-.pic {
-    position: absolute;
-    right: 0px;
-}
-
-#repopic {
-    width:300px;
-    height:150px;
-    margin: 20px;
-}
-
 .story {
-    margin: 80px 20px 80px 20px;
+    margin: 60px 20px 80px 20px;
+}
+
+#story {
+    margin-top: 50px;
 }
 
 .result .nextButton {

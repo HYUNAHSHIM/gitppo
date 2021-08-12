@@ -11,16 +11,16 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-function User({location}) {
-    const [ name, setName ] = useState("");
-    const [ birth, setBirth ] = useState("");
-    const [ schoolList, setSchoolList] = useState([{ school: "고등학교", schoolName: "한양고등학교" }]);
-    const [ skillList, setSkillList] = useState([{ skill: "Python", level: "10", open: false}]);
-    const [ companyList, setCompanyList] = useState([{ company: "회사명", start: "2021-07-21", end: "2021-07-31", story: "업무 내용" }]);
-    const [ haveCareer, setHaveCareer ] = useState(true);
+function User({ location }) {
+    const [name, setName] = useState("");
+    const [birth, setBirth] = useState("");
+    const [schoolList, setSchoolList] = useState([{ school: "고등학교", schoolName: "한양고등학교" }]);
+    const [skillList, setSkillList] = useState([{ skill: "Python", level: "10", open: false }]);
+    const [companyList, setCompanyList] = useState([{ company: "회사명", start: "2021-07-21", end: "2021-07-31", story: "업무 내용" }]);
+    const [haveCareer, setHaveCareer] = useState(true);
     const history = useHistory();
-    
-    
+
+
     const usebirthStyles = makeStyles((theme) => ({
         container: {
             display: 'flex',
@@ -33,7 +33,7 @@ function User({location}) {
         },
     }));
     const birthclasses = usebirthStyles();
-    
+
     const uselevelStyles = makeStyles((theme) => ({
         button: {
             display: 'block',
@@ -66,7 +66,7 @@ function User({location}) {
         setName(e.target.value);
     };
 
-    
+
     const onChangeBirth = e => {
         setBirth(e.target.value);
     };
@@ -79,7 +79,7 @@ function User({location}) {
     }
 
     const handleAddSchool = () => {
-        setSchoolList([...schoolList, {school:"", schoolName:""}]);
+        setSchoolList([...schoolList, { school: "", schoolName: "" }]);
     }
 
     const handleRemoveSchool = index => {
@@ -87,7 +87,7 @@ function User({location}) {
         list.splice(index, 1);
         setSchoolList(list);
     }
-    
+
     const handleSkillChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...skillList];
@@ -96,7 +96,7 @@ function User({location}) {
     }
 
     const handleAddSkill = () => {
-        setSkillList([...skillList, {skill:"", level: "10", open: false}]);
+        setSkillList([...skillList, { skill: "", level: "10", open: false }]);
     }
 
     const handleRemoveSkill = index => {
@@ -130,7 +130,7 @@ function User({location}) {
     }
 
     const handleAddCompany = () => {
-        setCompanyList([...companyList, { company:"", start: "2021-07-12", end: "2021-07-13", story: "" }]);
+        setCompanyList([...companyList, { company: "", start: "2021-07-12", end: "2021-07-13", story: "" }]);
     }
 
     const handleRemoveCompany = index => {
@@ -165,33 +165,33 @@ function User({location}) {
     }
 
     return (
-        <div className="info" style={{padding: "50px 0px"}}>
+        <div className="info" style={{ padding: "50px 0px" }}>
             <div className="infoStyle">
                 <h4 className="title">추가 내용 입력</h4>
-                <Button className="nextButton" 
-                onClick={onClickSave}>저장하기</Button>
+                <Button className="nextButton"
+                    onClick={onClickSave}>저장하기</Button>
             </div>
 
             <div className="contentStyle">이름
                 <div className="detailStyle1">
-                    <input className="inputStyle" value={name} onChange={onChangename}/>
+                    <input className="inputStyle" value={name} onChange={onChangename} />
                 </div>
             </div>
 
             <div className="contentStyle">생년월일
                 <div className="detailStyle1">
                     <div className="birthStyle">
-                        <form className={birthclasses.container} noValidate>     
+                        <form className={birthclasses.container} noValidate>
                             <TextField
-                            value={birth}
-                            onChange={onChangeBirth}
-                            id="date"
-                            label="Birth"
-                            type="date"
-                            className={birthclasses.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                                value={birth}
+                                onChange={onChangeBirth}
+                                id="date"
+                                label="Birth"
+                                type="date"
+                                className={birthclasses.textField}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
                         </form>
                     </div>
@@ -202,39 +202,39 @@ function User({location}) {
                 <div className="detailStyle2">
                     <div>
                         {schoolList.map((item, i) => {
-                            return(
+                            return (
                                 <div key={i}>
                                     <input
-                                    type="text"
-                                    name="school"
-                                    placeholder="고등학교"
-                                    className="inputStyle"
-                                    value={item.school}
-                                    onChange={e => handleSchoolChange(e, i)}
+                                        type="text"
+                                        name="school"
+                                        placeholder="고등학교"
+                                        className="inputStyle"
+                                        value={item.school}
+                                        onChange={e => handleSchoolChange(e, i)}
                                     />
                                     <input
-                                    type="text"
-                                    name="schoolName"
-                                    placeholder="한양고등학교"
-                                    className="inputStyle"
-                                    value={item.schoolName}
-                                    onChange={e => handleSchoolChange(e, i)}
+                                        type="text"
+                                        name="schoolName"
+                                        placeholder="한양고등학교"
+                                        className="inputStyle"
+                                        value={item.schoolName}
+                                        onChange={e => handleSchoolChange(e, i)}
                                     />
-                                    {schoolList.length - 1 !== i &&<FiMinus
-                                    type="button"
-                                    value="삭제"
-                                    className="buttonStyle"
-                                    onClick={() => handleRemoveSchool(i)}
+                                    {schoolList.length - 1 !== i && <FiMinus
+                                        type="button"
+                                        value="삭제"
+                                        className="buttonStyle"
+                                        onClick={() => handleRemoveSchool(i)}
                                     />}
                                     {schoolList.length - 1 === i && <FiPlus
-                                    type="button"
-                                    value="추가"
-                                    className="buttonStyle"
-                                    onClick={handleAddSchool}
+                                        type="button"
+                                        value="추가"
+                                        className="buttonStyle"
+                                        onClick={handleAddSchool}
                                     />}
                                 </div>
                             )
-                        })}                                  
+                        })}
                     </div>
                 </div>
             </div>
@@ -243,7 +243,7 @@ function User({location}) {
                 <div className="detailStyle2">
                     <div>
                         {skillList.map((item, i) => {
-                            return(
+                            return (
                                 <div className="skillStyle" key={i}>
                                     <input
                                         type="text"
@@ -258,72 +258,72 @@ function User({location}) {
                                             <FormControl className={levelclasses.formControl}>
                                                 <InputLabel id="demo-controlled-open-select-label">Level</InputLabel>
                                                 <Select
-                                                labelId="demo-controlled-open-select-label"
-                                                id="demo-controlled-open-select"
-                                                open={item.open}
-                                                onClose={e => handleOpen(e, i)}
-                                                onOpen={e => handleOpen(e, i)}
-                                                value={item.level}
-                                                onChange={e => handleLevelChange(e, i)}
+                                                    labelId="demo-controlled-open-select-label"
+                                                    id="demo-controlled-open-select"
+                                                    open={item.open}
+                                                    onClose={e => handleOpen(e, i)}
+                                                    onOpen={e => handleOpen(e, i)}
+                                                    value={item.level}
+                                                    onChange={e => handleLevelChange(e, i)}
                                                 >
-                                                <MenuItem value={10}>초급</MenuItem>
-                                                <MenuItem value={20}>중급</MenuItem>
-                                                <MenuItem value={30}>고급</MenuItem>
+                                                    <MenuItem value={10}>초급</MenuItem>
+                                                    <MenuItem value={20}>중급</MenuItem>
+                                                    <MenuItem value={30}>고급</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         </div>
                                     </div>
                                     <div className="skillButton">
-                                        {skillList.length - 1 !== i &&<FiMinus
-                                        type="button"
-                                        value="삭제"
-                                        className="buttonStyle"
-                                        onClick={() => handleRemoveSkill(i)}
+                                        {skillList.length - 1 !== i && <FiMinus
+                                            type="button"
+                                            value="삭제"
+                                            className="buttonStyle"
+                                            onClick={() => handleRemoveSkill(i)}
                                         />}
                                         {skillList.length - 1 === i && <FiPlus
-                                        type="button"
-                                        value="추가"
-                                        className="buttonStyle"
-                                        onClick={handleAddSkill}
+                                            type="button"
+                                            value="추가"
+                                            className="buttonStyle"
+                                            onClick={handleAddSkill}
                                         />}
                                     </div>
                                 </div>
                             )
-                        })}                                  
+                        })}
                     </div>
                 </div>
-            </div>   
+            </div>
 
             <div className="contentStyle">경력
                 <div className="detailStyle3">
                     <div>
-                        <div style={{display: "inline-block", fontSize: "0.8em", padding: "0px 5px 0px 20px"}}>경력 존재 여부</div>
-                        <input type="checkbox" checked={haveCareer} style={{cursor: "pointer"}} onClick={onClickHaveCarrer}></input>
+                        <div style={{ display: "inline-block", fontSize: "0.8em", padding: "0px 5px 0px 20px" }}>경력 존재 여부</div>
+                        <input type="checkbox" checked={haveCareer} style={{ cursor: "pointer" }} onClick={onClickHaveCarrer}></input>
                     </div>
                     <div>
                         {companyList.map((item, i) => {
-                            return(
+                            return (
                                 <div key={i}>
                                     <input
-                                    type="text"
-                                    name="company"
-                                    placeholder="회사명"
-                                    className="inputStyle"
-                                    value={item.company}
-                                    onChange={e => handleCompanyChange(e, i)}
+                                        type="text"
+                                        name="company"
+                                        placeholder="회사명"
+                                        className="inputStyle"
+                                        value={item.company}
+                                        onChange={e => handleCompanyChange(e, i)}
                                     />
                                     <div className="startStyle">
                                         <form className={birthclasses.container} noValidate>
                                             <TextField
                                                 value={item.start}
-                                                onChange={e => onChangeStart(e, i)}  
+                                                onChange={e => onChangeStart(e, i)}
                                                 id="date"
                                                 label="Start"
                                                 type="date"
                                                 defaultValue="2017-05-24"
                                                 className={birthclasses.textField}
                                                 InputLabelProps={{
-                                                shrink: true,
+                                                    shrink: true,
                                                 }}
                                             />
                                         </form>
@@ -332,50 +332,50 @@ function User({location}) {
                                         <form className={birthclasses.container} noValidate>
                                             <TextField
                                                 value={item.end}
-                                                onChange={e => onChangeEnd(e, i)}  
+                                                onChange={e => onChangeEnd(e, i)}
                                                 id="date"
                                                 label="Start"
                                                 type="date"
                                                 defaultValue="2017-05-24"
                                                 className={birthclasses.textField}
                                                 InputLabelProps={{
-                                                shrink: true,
+                                                    shrink: true,
                                                 }}
                                             />
                                         </form>
                                     </div>
                                     <div className="workStyle">
                                         <input
-                                        type="text"
-                                        name="story"
-                                        placeholder="업무 내용"
-                                        className="textStyle"
-                                        value={item.story}
-                                        onChange={e => handleCompanyChange(e, i)}
-                                    />
+                                            type="text"
+                                            name="story"
+                                            placeholder="업무 내용"
+                                            className="textStyle"
+                                            value={item.story}
+                                            onChange={e => handleCompanyChange(e, i)}
+                                        />
                                     </div>
                                     <div className="careerButton">
-                                        {companyList.length - 1 !== i &&<FiMinus
-                                        type="button"
-                                        value="삭제"
-                                        className="buttonStyle"
-                                        onClick={() => handleRemoveCompany(i)}
+                                        {companyList.length - 1 !== i && <FiMinus
+                                            type="button"
+                                            value="삭제"
+                                            className="buttonStyle"
+                                            onClick={() => handleRemoveCompany(i)}
                                         />}
                                         {companyList.length - 1 === i && <FiPlus
-                                        type="button"
-                                        value="추가"
-                                        className="buttonStyle"
-                                        onClick={handleAddCompany}
+                                            type="button"
+                                            value="추가"
+                                            className="buttonStyle"
+                                            onClick={handleAddCompany}
                                         />}
                                     </div>
                                 </div>
                             )
-                        })}                                  
+                        })}
                     </div>
-                </div> 
+                </div>
             </div>
 
-        </div> 
+        </div>
     );
 };
 export default User;
