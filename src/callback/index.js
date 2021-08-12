@@ -32,6 +32,7 @@ function Callback({ history, location }) {
         console.error("Api request failed! Error!!");
         console.error(e);
         setIsError(true);
+        alert("Github 인증에 실패하였습니다.");
       });
   }, [location, history]);
 

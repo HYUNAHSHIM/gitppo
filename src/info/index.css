@@ -1,146 +1,68 @@
-.info {
-    margin: 40px;
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.infoStyle {
+#container {
+    padding: 40px;
+}
+
+.info-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-.title {
-    margin: 10px 0px 30px 0px;
+.info-title .title {
+    margin: 10px 0 30px 0;
     font-size: 1.4em;
     font-weight: bold;
     padding: 4px 10px; 
     border-left: 6px solid #444;
 }
 
-.contentStyle {
-    font-family: notosans_bold;
-    font-size: 1.1em;
-    margin: 40px 0px;
-    padding-bottom: 10px;
-}
-
-.birthStyle {
-    margin-left: 15px;
+.info-each {
     margin-bottom: 20px;
+    /*padding: 10px 0;*/
+    /*border-bottom: 1px dotted #828282;*/
 }
-
-.inputStyle {
+.info-each label {
+    width: 15%;
+    max-width: 100px;
+    font-weight: bold;
+}
+.info-each input {
     width: 200px;
-    outline: none;
-    border-top: 1px;
-    border-left: 1px;
-    border-right: 1px;
-    margin: 20px;
-    font-size: 0.9em;
-    font-family: notosans_normal;
-    border-bottom: solid 1px #808080;
-}
+    height: 2rem;
+    margin: 10px;
 
-input:focus{
+    border: none;
+    border-bottom: 1px solid #808080;
+    outline: none;
+
+    font-size: 0.9em;
+}
+.info-each input:focus{
     border-bottom: 2.5px solid black;
 }
 
-.levelStyle {
-    margin-left: 250px;
-    margin-top: -76px;
+.info-each > input,
+.info-each-input-container {
+    position: relative;
+    display: inline-table;
+    /*float: left;*/
+    /*left: 5%;*/
 }
 
-.startStyle {   
-    padding-left: 250px;
-    margin-bottom: -55px;
-    margin-top: -68px;
+.MuiFormControl-root {
+    height: 2rem;
+    margin: 10px !important;
+    padding: 0;
 }
-
-.endStyle {
-    margin-left: 500px;
-    margin-bottom: -40px;
-    margin-top: 7px;
-}
-
-.textStyle {
-    width: 400px;
-    outline: none;
-    border-top: 1px;
-    border-left: 1px;
-    border-right: 1px;
-    margin: 39px;
-    margin-left: 10px;
+#demo-controlled-open-select {
     font-size: 0.9em;
-    font-family: notosans_normal;
-    border-bottom: solid 1px #808080;
 }
 
-.textStyle.input:focus{
-    border-bottom: 2.5px solid black;
-}
-
-.companyStyle{
-    margin-top: -47px;
-}
-
-.workStyle {
-    margin-left: 730px;
-    margin-top: -66px;
-}
-
-.careerStyle {
-    text-align: "inline-block";
-    margin-top: 20px;
-}
-
-.buttonStyle {
-    border: none;
-    background-color: transparent;
-    font-size: 15px;
-}
-
-.detailStyle1 {
-    width: 500px;
-    height: 60px;
-    margin-top: -45px;
-    margin-left: 58px;
-}
-
-.detailStyle2 {
-    width: 1000px;
-    margin-top: -45px;
-    margin-left: 58px;
-}
-
-.detailStyle3 {
-    width: 2000px;
-    margin-top: -45px;
-    margin-left: 58px;
-}
-
-.info .nextButton {
-    text-decoration: none;
-    border: none;
-    background: #1b1f23;
-    color: white;
-    height: 45px;
-    width: 150px;
-    margin: 0px 0px 10px 0px;
-    text-align:center;
-    cursor:pointer;
-    position:relative;
-    box-sizing:border-box;
-    overflow:hidden;
-    border-radius: 0px;
-}
-
-.skillButton {
-    margin-left: 400px;
-    margin-top: -38px;
-    margin-bottom: 33px;
-}
-
-.careerButton {
-    margin-left: 1165px;
-    margin-top: -70px;
-    margin-bottom: 40px;
+.emphasis {
+    color: crimson;
 }
