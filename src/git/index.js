@@ -56,13 +56,13 @@ function Git({ location }) {
         const ordinary = infos.repos.find(e => e.name === repo.title);
         return {
           ...ordinary,
+          "readme": repo.readme ? repo.readme_content : "",
           'input': {
-            "readme": repo.readme,
             "description": repo.description,
             "role": repo.role,
             "skill": repo.skill,
             "implement": repo.implement,
-          }
+          },
         };
       });
 
@@ -86,21 +86,21 @@ function Git({ location }) {
       <div className={"subtitle"}>
         <h4>레포지토리 별 상세 설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
         <button className="nextButton"
-          onClick={handleSaveButton}>저장</button>
+                onClick={handleSaveButton}>저장</button>
       </div>
 
       {/* 레포지토리 내용 */}
       <Repository repo={curRepo}
-        handleRepoChange={handleRepoChange} />
+                  handleRepoChange={handleRepoChange} />
 
       {/* 레포지토리 이전/다음 버튼 */}
       <div className={"git-buttons"}>
         <button className="nextButton"
-          name={"prevRepo"}
-          onClick={handleButtonClick}>이전</button>
+                name={"prevRepo"}
+                onClick={handleButtonClick}>이전</button>
         <button className="nextButton"
-          name={"nextRepo"}
-          onClick={handleButtonClick}>다음</button>
+                name={"nextRepo"}
+                onClick={handleButtonClick}>다음</button>
       </div>
     </div>
   );
