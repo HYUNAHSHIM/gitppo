@@ -25,7 +25,7 @@ function Callback({ history, location }) {
         state: {data: data}
       });
     }
-
+    
     getToken()
       .then(() => setIsError(false))
       .catch((e) => {
