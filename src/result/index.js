@@ -9,7 +9,7 @@ import ReactMarkdown from "react-markdown";
 
 const ref = React.createRef();
 
-const colors = ['#FFDF3E', '#C1C1C1', '#616161'];
+const colors = ['#FFDF3E', '#C1C1C1', '#616161', '#756417', '#F7E07B', '#C2A527', '#F7CC91', '#757068', '#C5BCAF'];
 const options = {
     responsive: false,
 }
@@ -41,15 +41,18 @@ function Skill({ skill }) {
     }
 }
 
-function Language() {
+function Language({ lang }) {
+    const language = { lang }.lang;
+    var langName = [];
+    var langNum = [];
+    for (let i = 0; i < Object.keys(language).length; i++) {
+        langName.push(Object.keys(language)[i]);
+        langNum.push(Object.values(language)[i]);
+    }
     const langu = {
-        labels: [
-            'Java',
-            'C',
-            'C++'
-        ],
+        labels: langName,
         datasets: [{
-            data: [50, 25, 25],
+            data: langNum,
             backgroundColor: colors,
         }]
     };
@@ -85,20 +88,29 @@ function School({ school }) {
 }
 
 function Repo({ repo }) {
+    const keys = Object.keys(repo.languages)
+    var langlist = [];
+    for (let i = 0; i < keys.length; i++) {
+        langlist.push(keys[i])
+    }
+    console.log(repo)
     return (
         <div className="project flex">
             <div className="repo">
                 <h3>{repo.name}</h3>
                 <h6>{repo.description}</h6>
-                <h6>{repo.role}</h6>
-                <h6>{repo.skill}</h6>
-                <h6>{repo.implement}</h6>
-                <span className="tempbtn">C</span>
+                <h6><b>역할 | </b>{repo.input.role}</h6>
+                <h6><b>사용 기술 | </b>{repo.input.skill}</h6>
+                <h6><b>구현 내용 | </b>{repo.input.implement}</h6>
+                <br></br>
+                {langlist.map(language => (
+                    <span className="tempbtn">{language}</span>
+                ))}
             </div >
             <div className="readme">
                 <ReactMarkdown children={repo.readme} />
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -109,13 +121,31 @@ function Preview() {
     const skills = location.state.skillList;
     const schools = location.state.schoolList;
     const keys = Object.keys(location.state);
-    const repos = []
+    const repos = [];
+    var url = "";
+    var dictLang = {};
+    for (let i = 0; i < 4; i++) {
+        url += (location.state[0].url.split('/')[i] + "/");
+    }
     for (let i = 0; i < keys.length; i++) {
         if (!isNaN(keys[i])) {
             keys[i] = Number(keys[i])
             repos.push(location.state[keys[i]])
+
+            const keyy = Object.keys(location.state[keys[i]].languages)
+            const valuee = Object.values(location.state[keys[i]].languages)
+            for (let j = 0; j < keyy.length; j++) {
+                if (keyy[j] in dictLang) {
+                    var value = valuee[j] + dictLang[keyy[j]];
+                    dictLang[keyy[j]] = value;
+                } else {
+                    dictLang[keyy[j]] = valuee[j];
+                }
+            }
         }
     }
+
+    const langs = [dictLang];
     return (
         <div ref={ref}>
             <div id="box">
@@ -133,7 +163,7 @@ function Preview() {
                             <div className="birth">
                                 <h5>{birth[0]}.{birth[1]}.{birth[2]}</h5>
                             </div>
-                            <div className="sns">http://github.com/000</div><br></br>
+                            <div className="sns">{url}</div><br></br>
                         </div>
                     </div>
                     <div className="school">
@@ -158,7 +188,7 @@ function Preview() {
                         </div>
                         <div class="lang">
                             <h4>사용언어</h4>
-                            {Language()}
+                            {langs.map(lang => <Language lang={lang} />)}
                         </div>
                     </div>
                     <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
