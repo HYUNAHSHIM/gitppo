@@ -25,6 +25,11 @@ function User({ location }) {
       [profileImg, setProfileImg] = useState("");
 
     const onClickSave = () => {
+        if(!profileImg) return alert("사진을 선택하지 않았습니다.");
+        if(!name.trim()) return alert("이름을 입력하지 않았습니다.");
+        else setName(name.trim());
+        if(!birth) return alert("생년월일을 입력하지 않았습니다.");
+
         history.push({
             pathname: "/result",
             state: {
@@ -104,6 +109,18 @@ function User({ location }) {
         list.splice(index, 1);
         setCompanyList(list);
     }
+    const handleImgPopup = () => {
+        const img = new Image();
+        img.src = profileImg;
+
+        const img_width = img.width;
+        const win_width = img.width + 25;
+        const img_height = img.height;
+
+        const OpenWindow = window.open('', '_blank', 'width=' + img_width + ', height=' + img_height + ', menubars=no, scrollbars=auto');
+        OpenWindow.document.write("<style>body{margin:0;}</style><img src='" + img.src + "' width='" + win_width + "' alt='프로필 이미지'>");
+    }
+
     const onChangeStart = (e, index) => {
         const {value} = e.target;
         const list = [...companyList];
@@ -125,8 +142,10 @@ function User({ location }) {
                       onClick={onClickSave}>저장하기</Button>
           </div>
 
+          <div className={"emphasis"}><b>* 표시는 필수 정보입니다.</b></div>
+
           <div className={"info-each"}>
-              <label>사진</label>
+              <label><span className={"emphasis"}>*</span> 사진</label>
               <input type={"file"}
                      accept={"image/*"}
                      onChange={onChangeImg} />
@@ -135,18 +154,20 @@ function User({ location }) {
                 <span>
                     <img src={profileImg}
                          alt="프로필 이미지"
-                         height={"100px"}/>
+                         height={"100px"}
+                         style={{cursor: "pointer"}}
+                         onClick={handleImgPopup}/>
                 </span>
               )}
           </div>
           <div className="info-each">
-              <label>이름</label>
+              <label><span className={"emphasis"}>*</span> 이름</label>
               <input value={name}
                      onChange={onChangeName}/>
           </div>
 
           <div className="info-each">
-              <label>생년월일</label>
+              <label><span className={"emphasis"}>*</span> 생년월일</label>
               <input value={birth}
                      onChange={onChangeBirth}
                      id="date"
@@ -252,20 +273,17 @@ function User({ location }) {
                         {companyList.length - 1 !== i
                         && <FiMinus type="button"
                                     value="삭제"
-                                    className="buttonStyle"
                                     onClick={() => handleRemoveCompany(i)} />
                         }
                         {companyList.length - 1 === i
                         && <FiPlus type="button"
                                    value="추가"
-                                   className="buttonStyle"
                                    onClick={handleAddCompany}/>
                         }
                     </li>
                   ))}
               </ul>
           </div>
-
       </div>
     );
 }

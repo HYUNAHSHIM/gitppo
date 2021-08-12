@@ -22,13 +22,14 @@ ul, li {
 }
 
 .info-each {
-    /*margin-bottom: 20px;*/
+    margin-bottom: 20px;
     /*padding: 10px 0;*/
     /*border-bottom: 1px dotted #828282;*/
 }
 .info-each label {
     width: 15%;
     max-width: 100px;
+    font-weight: bold;
 }
 .info-each input {
     width: 200px;
@@ -62,8 +63,6 @@ ul, li {
     font-size: 0.9em;
 }
 
-.buttonStyle {
-    border: none;
-    background-color: transparent;
-    font-size: 15px;
+.emphasis {
+    color: crimson;
 }
