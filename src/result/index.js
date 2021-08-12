@@ -2,71 +2,120 @@ import React from "react";
 import "./index.css";
 import head from "./head.png";
 import { Doughnut } from 'react-chartjs-2';
-import { data } from "./data.js";
-import GitImage from "./github.png";
 import domtoimage from "dom-to-image";
 import jsPDF from 'jspdf';
+import { useLocation } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const ref = React.createRef();
 
-const langu = {
-    labels: [
-        'Java',
-        'C',
-        'C++'
-    ],
-    datasets: [{
-        data: [50, 25, 25],
-        backgroundColor: [
-            '#FFDF3E',
-            '#C1C1C1',
-            '#616161'
-        ]
-    }]
-};
-
-const data3 = {
-    labels: [
-        'Java',
-        'Kotlin',
-        'TypeScript'
-    ],
-    datasets: [{
-        data: [15, 75, 10],
-        backgroundColor: [
-            '#FFDF3E',
-            '#C1C1C1',
-            '#616161'
-        ]
-    }]
-};
-
+const colors = ['#FFDF3E', '#C1C1C1', '#616161'];
 const options = {
     responsive: false,
 }
-
 const style = {
     position: "relative",
     height: "130px"
 }
 
+const skills = [];
+const levels = [];
+
+function Skill({ skill }) {
+    const skill2 = useLocation().state.skillList;
+    skills.push(skill.skill);
+    levels.push(skill.level);
+    const skillData = {
+        labels: skills,
+        datasets: [{
+            data: levels,
+            backgroundColor: colors,
+        }],
+    };
+    if (levels.length == skill2.length) {
+        return (
+            <Doughnut data={skillData} options={options} style={style} />
+        )
+    } else {
+        return ("")
+    }
+}
+
+function Language() {
+    const langu = {
+        labels: [
+            'Java',
+            'C',
+            'C++'
+        ],
+        datasets: [{
+            data: [50, 25, 25],
+            backgroundColor: colors,
+        }]
+    };
+    return (
+        <Doughnut data={langu} options={options} style={style} />
+    )
+}
+
+function Company({ company }) {
+    return (
+        <div className="story">
+            <h5><b>{company.company}</b></h5>
+            {company.start} ~ {company.end}
+            <p>{company.story}</p>
+        </div >
+    )
+}
+
+function Work({ company }) {
+    const sdate = company.start.split("-");
+    const edate = company.end.split("-");
+    const date = sdate[0] + "." + sdate[1] + "-" + edate[0] + "." + edate[1]
+    return (
+        <span className="c">{date}</span>
+    )
+}
+
+function School({ school }) {
+    const schoolName = school.schoolName;
+    return (
+        <span className="c">{schoolName}</span>
+    )
+}
+
 function Repo({ repo }) {
     return (
-        <div className="project">
-            <div className="flex">
-                <div className="repo">
-                    <h3>{repo.title}</h3>
-                    <h6>{repo.description}</h6>
-                    <span className="tempbtn">C</span>
-                    <span className="tempbtn">Java</span>
-                    <span className="tempbtn">JavaScript</span>
-                </div >
+        <div className="project flex">
+            <div className="repo">
+                <h3>{repo.name}</h3>
+                <h6>{repo.description}</h6>
+                <h6>{repo.role}</h6>
+                <h6>{repo.skill}</h6>
+                <h6>{repo.implement}</h6>
+                <span className="tempbtn">C</span>
+            </div >
+            <div className="readme">
+                <ReactMarkdown children={repo.readme} />
             </div>
         </div>
     )
 }
 
-function preview() {
+function Preview() {
+    const location = useLocation();
+    const birth = location.state.birth.split('-');
+    const companys = location.state.companyList;
+    const skills = location.state.skillList;
+    const schools = location.state.schoolList;
+    const keys = Object.keys(location.state);
+    const repos = []
+    for (let i = 0; i < keys.length; i++) {
+        if (!isNaN(keys[i])) {
+            keys[i] = Number(keys[i])
+            repos.push(location.state[keys[i]])
+        }
+    }
     return (
         <div ref={ref}>
             <div id="box">
@@ -77,12 +126,12 @@ function preview() {
                         </div>
                         <div className="info">
                             <br></br>
-                            <div className="slogan"><h4>안녕하세요! 개발자 하마입니다.</h4></div>
+                            <div className="slogan"><h4>안녕하세요! 개발자 {location.state.name}입니다.</h4></div>
                             <div className="name">
-                                <h1>김하마</h1>
+                                <h1>{location.state.name}</h1>
                             </div>
                             <div className="birth">
-                                <h5>1999.10.04</h5>
+                                <h5>{birth[0]}.{birth[1]}.{birth[2]}</h5>
                             </div>
                             <div className="sns">http://github.com/000</div><br></br>
                         </div>
@@ -91,50 +140,34 @@ function preview() {
                         <div className="flex">
                             <h4>학력</h4>
                             <hr></hr>
-                            <div className="s1">2013.03~2016.02</div>
-                            <div className="s2">2013.03~2016.02</div>
-                            <div className="s3">2013.03~2016.02</div>
+                            {schools.map(school => <School school={school} />)}
                         </div>
                     </div>
                     <div className="career">
                         <div className="flex">
                             <h4>경력</h4>
                             <hr></hr>
-                            <div className="c1">2013.03~2016.02</div>
-                            <div className="c2">2013.03~2016.02</div>
-                            <div className="c3">2013.03~2016.02</div>
-                            <div className="c4">2013.03~2016.02</div>
+                            {companys.map(company => <Work company={company} />)}
                         </div>
                     </div>
                     <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
                     <div className="flex">
                         <div class="stack">
                             <h4>기술스택</h4>
-                            <Doughnut data={data3} options={options} style={style} />
+                            {skills.map(skill => <Skill skill={skill} />)}
                         </div>
                         <div class="lang">
                             <h4>사용언어</h4>
-                            <Doughnut data={langu} options={options} style={style} />
+                            {Language()}
                         </div>
                     </div>
                     <div style={{ width: "100%", height: "1px", margin: "30px 0px", background: "#eee" }}></div>
                     <div id="repo">
-                        {data.map(data => <Repo repo={data} />)}
+                        {repos.map(repo => <Repo repo={repo} />)}
                     </div>
                     <div id="story">
                         <h4>Story</h4>
-                        <div className="story">
-                            <h5>000 회사</h5>
-                                저는 000 회사에서 이랬고
-                            </div>
-                        <div className="story">
-                            <h5>*** 회사</h5>
-                                *** 회사에서는 저랬고
-                            </div>
-                        <div className="story">
-                            <h5>## 회사</h5>
-                                ## 회사에서는 이랬습니다~~~~~~
-                            </div>
+                        {companys.map(company => <Company company={company} />)}
                     </div>
                 </div>
             </div>
@@ -147,7 +180,6 @@ function toPdf() {
     const pdf = new jsPDF('p', 'mm');
     var width = pdf.internal.pageSize.getWidth();
     var height = pdf.internal.pageSize.getHeight();
-    console.log(width, height);
     if (pdf) {
         domtoimage.toPng(input, {
             bgcolor: 'white',
@@ -161,7 +193,8 @@ function toPdf() {
 }
 
 
-function result() {
+
+function Result() {
     return (
         <div style={{ padding: "40px" }}>
             <div className="result">
@@ -170,8 +203,8 @@ function result() {
                     <button className="nextButton" onClick={toPdf}>추출하기</button>
                 </div>
             </div>
-            {preview()}
+            {Preview()}
         </div >
     );
 }
-export default result;
+export default Result;
