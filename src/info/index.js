@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -142,7 +140,7 @@ function User({ location }) {
                       onClick={onClickSave}>저장하기</Button>
           </div>
 
-          <div className={"emphasis"}><b>* 표시는 필수 정보입니다.</b></div>
+          <div className={"info-each emphasis"}><b>* 표시는 필수 정보입니다.</b></div>
 
           <div className={"info-each"}>
               <label><span className={"emphasis"}>*</span> 사진</label>

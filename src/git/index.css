@@ -1,5 +1,6 @@
 #container {
     padding: 40px;
+    min-height: calc(100vh - 63px - 99px);
 }
 
 .repo-each-container {

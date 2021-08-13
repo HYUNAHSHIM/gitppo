@@ -3,26 +3,27 @@
     height: calc(100vh - 63px - 99px);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .main .wrapper {
-    margin-top: 150px;
-    padding: 17px 30px;
-    height: 80px;
+    /*margin-top: 150px;*/
+    padding: 20px 30px;
+    margin-right: 5%;
+    /*height: 80px;*/
+    height: fit-content;
+
     border: 1px solid #ccc;
     background: white;
+    z-index: 10;
 }
-.main .wrapper .title {
-    font-size: 1.2em;
-    font-weight: 700;
-    padding-bottom: 80px;
-}
+
 .main .wrapper .inputContainer {
     padding-bottom: 35px;
 }
 .main .wrapper .inputContainer input {
     width: 250px;
     padding: 5px 10px;
-    margin: 10px 0px;
+    margin: 10px 0;
     border: none;
     border-bottom: 1px solid black;
     text-decoration: none;
@@ -37,23 +38,27 @@
     border: none;
     border-bottom: 1px solid #ccc;
 }
-.main .wrapper #button{
+
+.main .wrapper #button {
+    position:relative;
+    width: 100%;
+
+    /*padding: 10px 108px 0 108px;*/
+    padding: 10px 0;
+    font-size:1em;
+    text-align: center;
+
     background:#1b1f23;
     color:#fff;
+
     border:none;
-    position:relative;
-    height:45px;
-    font-size:1em;
-    padding: 10px 108px 0px 108px;
+    outline:none;
+
     cursor:pointer;
     transition:800ms ease all;
-    outline:none;
 }
-.main .wrapper #button:hover{
-    background:#fff;
-    color:#1b1f23;
-}
-.main .wrapper #button:before,#button:after{
+.main .wrapper #button:before,
+.main .wrapper #button:after{
     content:'';
     position:absolute;
     top:45px;
@@ -63,13 +68,67 @@
     background: #1b1f23;
     transition:400ms ease all;
 }
-.main .wrapper button:after{
+.main .wrapper #button:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
 }
-.main .wrapper #button:hover:before,#button:hover:after{
+.main .wrapper #button:hover{
+    background:#fff;
+    color:#1b1f23;
+}
+.main .wrapper #button:hover:before,
+.main .wrapper #button:hover:after{
     width:100%;
     transition:800ms ease all;
+}
+
+.main .background {
+    width: 50%;
+    z-index: 0;
+}
+.main .background img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.main .subtitle1 {
+    font-size: 2rem;
+    padding-bottom: 3rem;
+}
+
+.main .subtitle2 {
+    font-size: 1rem;
+}
+.main .title {
+    font-size: 3rem;
+    font-weight: 700;
+    padding-bottom: 3rem;
+    /*padding-bottom: 80px;*/
+}
+
+.no-drag {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 600px){
+    .main {
+        flex-direction: column-reverse;
+        padding: 30px;
+        min-height: calc(100vh - 63px - 99px);
+        height: auto;
+    }
+    .main .background,
+    .main .wrapper {
+        width: 100%;
+    }
+    .main .wrapper {
+        margin: 0;
+    }
 }
