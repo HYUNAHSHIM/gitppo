@@ -11,7 +11,7 @@ const headerStyle = {
 };
 
 const logoStyle = {
-    fontFamily: "notosans_bold",
+    fontFamily: "ebs_sb",
     fontSize: "1.5em"
 };
 

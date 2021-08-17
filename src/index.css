@@ -12,6 +12,27 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: "ebs_l";
+  src: url("font/ebs/EBS훈민정음새론L.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "ebs_r";
+  src: url("font/ebs/EBS훈민정음새론R.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "ebs_sb";
+  src: url("font/ebs/EBS훈민정음새론SB.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
