@@ -1,10 +1,11 @@
 #container {
     padding: 40px;
     min-height: calc(100vh - 63px - 99px);
+    background: #F2F7FF;
 }
 
 .repo-each-container {
-    border-top: 2px solid #828282;
+    border: 1px solid #828282;
     margin-bottom: 40px;
 }
 
@@ -58,20 +59,42 @@
 }
 
 /* REAMDE 미리보기 */
+.repo-each-container {
+    background: white;
+}
+
 .repo-each-container .list-group-item {
     padding-bottom: 0;
+}
+.repo-each-container .readme-container {
+    display: flex;
+    align-items: center;
 }
 .readme-preview-button {
     font-size: 0.9em;
     cursor: pointer;
-    color: #282c34;
-}
-.readme-preview-button:hover {
-    color: #61dafb;
-    text-decoration: underline;
+    
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2px 8px;
 }
 
 .readme-preview-container {
-    margin: 0 1rem;
-    padding-left: 1.25em;
+    padding-top: 10px;
+}
+
+
+
+/* popup */
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: -5px;
+    font-size: 2em;
+    color: #e5eaee;
 }

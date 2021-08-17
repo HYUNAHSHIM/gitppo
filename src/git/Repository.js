@@ -1,9 +1,19 @@
 import ReactMarkdown from "react-markdown";
 import "./index.css";
-import { useState } from "react";
+import Popup from "reactjs-popup";
 
 function Repository({ repo, handleRepoChange }) {
-  const [showReadmePreview, setShowReadmePreview] = useState(false);
+
+  const contentStyle = { 
+    width: "auto", 
+    minWidth: "600px",
+    height: "400px", 
+    border: "1px solid #ccc", 
+    padding: "30px", 
+    borderRadius: "10px", 
+    background: "white",
+    overflow: "auto",
+  };
 
   const handleInputChange = (event) => {
     const name = event.target.name;
@@ -53,29 +63,39 @@ function Repository({ repo, handleRepoChange }) {
       {/* 레포지토리 별 옵션 */}
       <div className={"repo-each-options"}>
 
-        {/* 체크 옵션 */}
-        <label className="list-group-item">
-          <input className="form-check-input me-1"
-            type="checkbox"
-            name="readme"
-            checked={repo.readme}
-            onChange={handleInputChange} />
-          <span>README의 내용을 반영합니다.</span>
-        </label>
+        <div className={"readme-container"}>
+          {/* 체크 옵션 */}
+          <label className="list-group-item">
+            <input className="form-check-input me-1"
+              type="checkbox"
+              name="readme"
+              checked={repo.readme}
+              onChange={handleInputChange} />
+            <span>README의 내용을 반영합니다.</span>
+          </label>
 
-        {/* README 미리보기 */}
-        <div className={"readme-preview-container"}>
-          <div className={"readme-preview-button"}
-            onClick={() => setShowReadmePreview(!showReadmePreview)}>
-            > README 미리보기
-          </div>
-          <div className={"form-control"}
-            style={{ display: showReadmePreview ? "block" : "none" }}>
-            <ReactMarkdown>
-              {repo.readme_content === undefined ? "README가 없습니다." : repo.readme_content}
-            </ReactMarkdown>
+          {/* README 미리보기 */}
+          <div className={"readme-preview-container"}>
+            <Popup 
+              trigger={<button className="readme-preview-button">미리보기</button>} 
+              modal
+              contentStyle={contentStyle}
+              lockScroll={true}
+            >
+              {close => (
+                <>
+                <div className="close-button" onClick={close}>&times;</div>
+                <ReactMarkdown>
+                  {repo.readme_content === undefined ? "README가 없습니다." : repo.readme_content}
+                </ReactMarkdown>
+                </>
+              )
+              }
+              
+            </Popup>
           </div>
         </div>
+        
 
         {/* 서술 옵션 */}
         <div className="input-group-sm mb-3 repo-each-inputs">

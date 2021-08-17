@@ -23,11 +23,19 @@
     align-items: center;
 }
 
+.result-container {
+    background: #F2F7FF;
+    padding: 40px;
+}
+
 #box {
     /*background-image: url("./bg.png");
     background-size: cover;*/
     border: 1px solid #bbb;
-    margin: 30px 230px;
+    width: 1240px;
+    margin: auto;
+    padding: 20px 0px;
+    background: white;
 }
 
 .content {

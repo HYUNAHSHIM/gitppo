@@ -4,6 +4,8 @@ import ReactMarkdown from "react-markdown";
 import {Doughnut} from 'react-chartjs-2';
 import jsPDF from 'jspdf';
 import html2canvas from "html2canvas";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import "./index.css";
 
 const ref = React.createRef();
@@ -82,36 +84,41 @@ function School({ school }) {
 
 function Repo({ repo }) {
     const keys = Object.keys(repo.languages);
-    const langList = [];
-    for (let key in keys) langList.push(key);
     return (
-      <div className="project flex">
-          <div className="repo">
-              <h3 className="title">{repo.name}</h3>
-              <h6>{repo.description}</h6>
-              <h6><b>역할 | </b>{repo.input.role || ""}</h6>
-              <h6><b>사용 기술 | </b>{repo.input.skill || ""}</h6>
-              <h6><b>구현 내용 | </b>{repo.input.implement || ""}</h6>
-              <br/>
-              {langList.map(language => (
+        <div className="project flex">
+            <div className="repo">
+            <h3 className="title">{repo.name}</h3>
+            <h6>{repo.description}</h6>
+            {repo.input.role && (
+                <h6><b>역할 | </b>{repo.input.role}</h6>
+            )}
+            {repo.input.skill && (
+                <h6><b>사용 기술 | </b>{repo.input.skill}</h6>
+            )}
+            {repo.input.skill && (
+                <h6><b>구현 내용 | </b>{repo.input.implement}</h6>
+            )}
+            <br/>
+            {keys.map(language => (
                 <span className="tempBtn">{language}</span>
-              ))}
-          </div >
-          <div className="readme">
-              <ReactMarkdown children={repo.readme} />
-          </div>
-      </div >
+            ))}
+            </div >
+            <div className="readme">
+                <ReactMarkdown children={repo.readme} />
+            </div>
+        </div >
     )
 }
 
 function Preview() {
     const location = useLocation();
+    console.log(location.state)
     const
-      birth = location.state.birth.split('-'),
-      companys = location.state.companyList,
-      skills = location.state.skillList,
-      schools = location.state.schoolList,
-      keys = Object.keys(location.state);
+        birth = location.state.birth.split('-'),
+        companys = location.state.companyList,
+        skills = location.state.skillList,
+        schools = location.state.schoolList,
+        keys = Object.keys(location.state);
 
     const repos = [];
     const dictLang = {};
@@ -156,7 +163,12 @@ function Preview() {
                               <h5>생년월일 {birth[0].substring(2)}.{birth[1]}.{birth[2]}</h5>
                           </div>
                           <div className="sns">
-                              <a href={url}>GitHub : {url}</a>
+                            <a href={url}
+                            target="_blank"
+                            title="git page"
+                            rel="noreferrer noopener">
+                                <FontAwesomeIcon icon={faGithub} size={"2x"}/>
+                            </a>
                           </div>
                           <br/>
                       </div>
@@ -239,7 +251,7 @@ function toPdf() {
 
 function Result() {
     return (
-      <div style={{ padding: "40px" }}>
+      <div className="result-container">
           <div className="result">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <h4 style={{ margin: "10px 0px 30px 0px", fontSize: "1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444" }}>
