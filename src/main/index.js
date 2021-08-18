@@ -20,9 +20,9 @@ function main() {
         </div>
 
         <a type="button"
-           id="button"
-          //href={`https://github.com/login/oauth/authorize?client_id=8034b9cee0aef2068649&redirect_uri=https://gitppo-front.herokuapp.com/callback`}>
-           href={`https://github.com/login/oauth/authorize?client_id=faaba046e9350cc82be8&redirect_uri=http://localhost:3000/callback`}>
+            id="button"
+            href={`https://github.com/login/oauth/authorize?client_id=8034b9cee0aef2068649&redirect_uri=https://gitppo-front.herokuapp.com/callback`}>
+            {/* href={`https://github.com/login/oauth/authorize?client_id=faaba046e9350cc82be8&redirect_uri=http://localhost:3000/callback`}> */}
           Git으로 로그인하기
         </a>
       </div>

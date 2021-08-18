@@ -17,8 +17,8 @@ function Callback({ history, location }) {
 
       const instance = axios.create({timeout: 5*60*1000});
       const { data } = await instance.post(
-        //`https://gitppo.herokuapp.com/auth`,
-        "http://localhost:8080/auth",
+        `https://gitppo.herokuapp.com/auth`,
+        //"http://localhost:8080/auth",
         {code}
       );
 
