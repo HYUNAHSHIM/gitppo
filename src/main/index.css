@@ -1,9 +1,9 @@
 .main {
-    padding: 10px;
-    height: calc(100vh - 63px - 99px);
     display: flex;
     justify-content: center;
     align-items: center;
+
+    height: calc(100vh - 4rem);
 }
 .main .wrapper {
     /*margin-top: 150px;*/
@@ -43,7 +43,6 @@
     position:relative;
     width: 100%;
 
-    /*padding: 10px 108px 0 108px;*/
     padding: 10px 0;
     font-size:1em;
     text-align: center;

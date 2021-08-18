@@ -4,11 +4,6 @@ ul, li {
     padding: 0;
 }
 
-#container {
-    padding: 40px;
-    min-height: calc(100vh - 63px - 99px);
-}
-
 .info-title {
     display: flex;
     justify-content: space-between;

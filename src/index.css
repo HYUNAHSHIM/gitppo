@@ -56,3 +56,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+header, footer,
+div, h1, h2, h3, h4, a, p, center, b {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-light-blue: #F2F7FF;
+  --main-blue: #0B409C;
+  --main-dark-blud: #10316B;
+  --main-yellow: #FFCE63;
+}

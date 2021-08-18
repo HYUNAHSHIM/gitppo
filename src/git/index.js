@@ -11,6 +11,7 @@ function Git({ location }) {
     [repositories, setRepositories] = useState(),
     [curRepo, setCurRepo] = useState();
 
+  // 최초 로딩 시 1번만 실행
   useEffect(() => {
     const fetchRepo = () => {
       const infos = location.state.data;
@@ -27,9 +28,15 @@ function Git({ location }) {
         }
       })
     }
-    setRepositories(fetchRepo());
-    setCurRepoIndex(0);
+
+    try {
+      setRepositories(fetchRepo());
+      setCurRepoIndex(0);
+    }
+    catch (e) {
+    }
   }, []);
+
   useEffect(() =>
     repositories && setCurRepo(repositories[curRepoIndex]),
     [repositories, curRepoIndex]);
@@ -72,18 +79,19 @@ function Git({ location }) {
 
   if (curRepo === undefined) {
     return (
-      <center id={"container"}>
-        <p>데이터를 준비 중 입니다.</p>
-        <Loading />
-        <br />
-      </center>
+      <div className={"error"}>
+        <div>
+          <p>데이터를 준비 중 입니다.</p>
+          <p>잠시만 기다려 주세요.</p>
+          <Loading />
+        </div>
+      </div>
     );
   }
   else return (
-    <div id={"container"}>
-
+    <div>
       {/* 타이틀 */}
-      <div className={"subtitle"}>
+      <div className={"title"}>
         <h4>레포지토리 별 상세 설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
         <button className="nextButton"
                 onClick={handleSaveButton}>저장</button>

@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import Loading from "../Loading";
+import "./index.css";
 
 require('dotenv').config();
 
@@ -38,7 +39,7 @@ function Callback({ history, location }) {
   }, [location, history]);
 
   return (
-    <div style={{padding: "150px", textAlign: "center"}}>
+    <div className={"error"}>
       {
         isError
         ? <div>
@@ -46,7 +47,7 @@ function Callback({ history, location }) {
             <p>다시 시도해주세요.</p>
           </div>
         : <div>
-            <p>Repository 정보를 가져오는 중입니다...</p>
+            <p>Repository 정보를 가져오는 중입니다.</p>
             <p>최대 5분 정도 소요 될 수 있습니다. 잠시만 기다려주세요.</p>
             <Loading />
           </div>

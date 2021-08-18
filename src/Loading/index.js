@@ -3,10 +3,10 @@ import "./index.css";
 
 function Loading() {
   const animation = (id) => {
-    return {animation: `fadeInOutLong 300s linear ${8-id}s`}
+    return {animation: `fadeInOutLong 300s linear ${8-id}s infinite`}
   }
   const websiteAnimation = () => {
-    return {animation: "fadeInOut 9s cubic-bezier(0.4, 0, 1, 1) infinite"}
+    return {animation: "fadeInOut 8s cubic-bezier(0.4, 0, 1, 1) infinite"}
   }
 
   return (
