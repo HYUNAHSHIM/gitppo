@@ -91,8 +91,7 @@ function Repository({ repo, handleRepoChange }) {
               </>
             )
             }
-
-            {/*</Popup>*/}
+            </Popup>
           </div>
         </div>
 
