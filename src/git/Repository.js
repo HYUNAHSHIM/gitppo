@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import "./index.css";
-// import Popup from "reactjs-popup";
+import Popup from "reactjs-popup";
 
 function Repository({ repo, handleRepoChange }) {
 
@@ -76,12 +76,12 @@ function Repository({ repo, handleRepoChange }) {
 
           {/* README 미리보기 */}
           <div className={"readme-preview-container"}>
-            {/*<Popup */}
-            {/*  trigger={<button className="readme-preview-button">미리보기</button>} */}
-            {/*  modal*/}
-            {/*  contentStyle={contentStyle}*/}
-            {/*  lockScroll={true}*/}
-            {/*>*/}
+            <Popup
+              trigger={<button className="readme-preview-button">미리보기</button>}
+              modal
+              contentStyle={contentStyle}
+              lockScroll={true}
+            >
             {close => (
               <>
                 <div className="close-button" onClick={close}>&times;</div>

@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import input from '@material-ui/core/input';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
 
