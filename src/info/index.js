@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Button } from "react-bootstrap";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -133,154 +132,165 @@ function User({ location }) {
     };
 
     return (
-      <div id="container">
-          <div className="info-title">
+      <div className={"info"}>
+
+          {/* 제목 */}
+          <div className="title">
               <h4 className="title">추가 내용 입력</h4>
-              <Button className="nextButton"
-                      onClick={onClickSave}>저장하기</Button>
+              <button className="nextButton"
+                      onClick={onClickSave}>저장하기</button>
           </div>
 
-          <div className={"info-each emphasis"}><b>* 표시는 필수 정보입니다.</b></div>
+          {/* 필수 입력 정보*/}
+          <div className={"emphasis info-subtitle"}>* 표시는 필수 정보입니다.</div>
 
-          <div className={"info-each"}>
-              <label><span className={"emphasis"}>*</span> 사진</label>
-              <input type={"file"}
-                     accept={"image/*"}
-                     onChange={onChangeImg} />
+          {/* 입력 창 */}
+          <div className={"info-container"}>
 
-              {profileImg && (
-                <span>
+              {/* 사진 */}
+              <div className={"info-each"}>
+                  <label><span className={"emphasis"}>*</span> 사진</label>
+                  <input type={"file"}
+                         accept={"image/*"}
+                         onChange={onChangeImg} />
+
+                  {/* 사진 미리보기 */}
+                  {profileImg && (
+                    <span>
                     <img src={profileImg}
                          alt="프로필 이미지"
                          height={"100px"}
                          style={{cursor: "pointer"}}
                          onClick={handleImgPopup}/>
-                </span>
-              )}
-          </div>
-          <div className="info-each">
-              <label><span className={"emphasis"}>*</span> 이름</label>
-              <input value={name}
-                     onChange={onChangeName}/>
-          </div>
+                    </span>
+                  )}
+              </div>
 
-          <div className="info-each">
-              <label><span className={"emphasis"}>*</span> 생년월일</label>
-              <input value={birth}
-                     onChange={onChangeBirth}
-                     id="date"
-                     type="date"/>
-          </div>
+              {/* 이름 */}
+              <div className="info-each">
+                  <label><span className={"emphasis"}>*</span> 이름</label>
+                  <input value={name}
+                         onChange={onChangeName}/>
+              </div>
 
-          <div className="info-each">
-              <label>학력</label>
-              <ul className={"info-each-input-container"}>
-                  {schoolList.map((item, i) => (
-                    <li key={i} >
-                        <input type="text"
-                               name="school"
-                               placeholder="구분 (예 : 고등학교)"
-                               value={item.school}
-                               onChange={e => handleSchoolChange(e, i)}/>
-                        <input type="text"
-                               name="schoolName"
-                               placeholder="학교 이름"
-                               value={item.schoolName}
-                               onChange={e => handleSchoolChange(e, i)}/>
+              <div className="info-each">
+                  <label><span className={"emphasis"}>*</span> 생년월일</label>
+                  <input value={birth}
+                         onChange={onChangeBirth}
+                         id="date"
+                         type="date"/>
+              </div>
 
-                        {schoolList.length - 1 !== i
-                        && <FiMinus type="button"
-                                    value="삭제"
-                                    onClick={() => handleRemoveSchool(i)}/>
-                        }
-                        {schoolList.length - 1 === i
-                        && <FiPlus type="button"
-                                   value="추가"
-                                   onClick={handleAddSchool}/>
-                        }
-                    </li>
-                  ))}
-              </ul>
-          </div>
+              <div className="info-each">
+                  <label>학력</label>
+                  <ul className={"info-each-input-container"}>
+                      {schoolList.map((item, i) => (
+                        <li key={i} >
+                            <input type="text"
+                                   name="school"
+                                   placeholder="구분 (예 : 고등학교)"
+                                   value={item.school}
+                                   onChange={e => handleSchoolChange(e, i)}/>
+                            <input type="text"
+                                   name="schoolName"
+                                   placeholder="학교 이름"
+                                   value={item.schoolName}
+                                   onChange={e => handleSchoolChange(e, i)}/>
 
-          <div className="info-each">
-              <label>기술/언어</label>
-              <ul className={"info-each-input-container"}>
-                  {skillList.map((item, i) => (
-                    <li key={i}>
-                        <input type="text"
-                               name="skill"
-                               placeholder="항목 (예 : JavaScript)"
-                               value={item.skill}
-                               onChange={e => handleSkillChange(e, i)}/>
+                            {schoolList.length - 1 !== i
+                            && <FiMinus type="button"
+                                        value="삭제"
+                                        onClick={() => handleRemoveSchool(i)}/>
+                            }
+                            {schoolList.length - 1 === i
+                            && <FiPlus type="button"
+                                       value="추가"
+                                       onClick={handleAddSchool}/>
+                            }
+                        </li>
+                      ))}
+                  </ul>
+              </div>
 
-                        <FormControl>
-                            <Select labelId="demo-controlled-open-select-label"
-                                    id="demo-controlled-open-select"
-                                    value={item.level}
-                                    open={item.open}
-                                    onClose={e => handleOpen(e, i)}
-                                    onOpen={e => handleOpen(e, i)}
-                                    onChange={e => handleLevelChange(e, i)} >
-                                <MenuItem value={10}>초급</MenuItem>
-                                <MenuItem value={20}>중급</MenuItem>
-                                <MenuItem value={30}>고급</MenuItem>
-                            </Select>
-                        </FormControl>
+              <div className="info-each">
+                  <label>기술/언어</label>
+                  <ul className={"info-each-input-container"}>
+                      {skillList.map((item, i) => (
+                        <li key={i}>
+                            <input type="text"
+                                   name="skill"
+                                   placeholder="항목 (예 : JavaScript)"
+                                   value={item.skill}
+                                   onChange={e => handleSkillChange(e, i)}/>
 
-                        {skillList.length - 1 !== i
-                        && <FiMinus type="button"
-                                    value="삭제"
-                                    onClick={() => handleRemoveSkill(i)}/>
-                        }
-                        {skillList.length - 1 === i
-                        && <FiPlus type="button"
-                                   value="추가"
-                                   onClick={handleAddSkill}/>
-                        }
-                    </li>
-                  ))}
-              </ul>
-          </div>
+                            <FormControl>
+                                <Select labelId="demo-controlled-open-select-label"
+                                        id="demo-controlled-open-select"
+                                        value={item.level}
+                                        open={item.open}
+                                        onClose={e => handleOpen(e, i)}
+                                        onOpen={e => handleOpen(e, i)}
+                                        onChange={e => handleLevelChange(e, i)} >
+                                    <MenuItem value={10}>초급</MenuItem>
+                                    <MenuItem value={20}>중급</MenuItem>
+                                    <MenuItem value={30}>고급</MenuItem>
+                                </Select>
+                            </FormControl>
 
-          <div className="info-each">
-              <label>경력</label>
-              <ul className={"info-each-input-container"}>
-                  {companyList.map((item, i) => (
-                    <li key={i}>
-                        <input type="text"
-                               name="company"
-                               placeholder="회사명"
-                               className="inputStyle"
-                               value={item.company}
-                               onChange={e => handleCompanyChange(e, i)} />
-                        <input value={item.start}
-                               onChange={e => onChangeStart(e, i)}
-                               id="date"
-                               type="date"/>
-                        <input value={item.end}
-                               onChange={e => onChangeEnd(e, i)}
-                               id="date"
-                               type="date"/>
-                        <input type="text"
-                               name="story"
-                               placeholder="업무 내용"
-                               className="textStyle"
-                               value={item.story}
-                               onChange={e => handleCompanyChange(e, i)}/>
-                        {companyList.length - 1 !== i
-                        && <FiMinus type="button"
-                                    value="삭제"
-                                    onClick={() => handleRemoveCompany(i)} />
-                        }
-                        {companyList.length - 1 === i
-                        && <FiPlus type="button"
-                                   value="추가"
-                                   onClick={handleAddCompany}/>
-                        }
-                    </li>
-                  ))}
-              </ul>
+                            {skillList.length - 1 !== i
+                            && <FiMinus type="button"
+                                        value="삭제"
+                                        onClick={() => handleRemoveSkill(i)}/>
+                            }
+                            {skillList.length - 1 === i
+                            && <FiPlus type="button"
+                                       value="추가"
+                                       onClick={handleAddSkill}/>
+                            }
+                        </li>
+                      ))}
+                  </ul>
+              </div>
+
+              <div className="info-each">
+                  <label>경력</label>
+                  <ul className={"info-each-input-container"}>
+                      {companyList.map((item, i) => (
+                        <li key={i}>
+                            <input type="text"
+                                   name="company"
+                                   placeholder="회사명"
+                                   className="inputStyle"
+                                   value={item.company}
+                                   onChange={e => handleCompanyChange(e, i)} />
+                            <input value={item.start}
+                                   onChange={e => onChangeStart(e, i)}
+                                   id="date"
+                                   type="date"/>
+                            <input value={item.end}
+                                   onChange={e => onChangeEnd(e, i)}
+                                   id="date"
+                                   type="date"/>
+                            <input type="text"
+                                   name="story"
+                                   placeholder="업무 내용"
+                                   className="textStyle"
+                                   value={item.story}
+                                   onChange={e => handleCompanyChange(e, i)}/>
+                            {companyList.length - 1 !== i
+                            && <FiMinus type="button"
+                                        value="삭제"
+                                        onClick={() => handleRemoveCompany(i)} />
+                            }
+                            {companyList.length - 1 === i
+                            && <FiPlus type="button"
+                                       value="추가"
+                                       onClick={handleAddCompany}/>
+                            }
+                        </li>
+                      ))}
+                  </ul>
+              </div>
           </div>
       </div>
     );
