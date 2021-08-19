@@ -5,92 +5,24 @@
 
     height: calc(100vh - 4rem);
 }
+
+/* 소개 박스 */
 .main .wrapper {
-    /*margin-top: 150px;*/
     padding: 20px 30px;
     margin-right: 5%;
-    /*height: 80px;*/
-    height: fit-content;
 
     border: 1px solid #ccc;
     background: white;
-    z-index: 10;
 }
 
-.main .wrapper .inputContainer {
-    padding-bottom: 35px;
-}
-.main .wrapper .inputContainer input {
-    width: 250px;
-    padding: 5px 10px;
-    margin: 10px 0;
-    border: none;
-    border-bottom: 1px solid black;
-    text-decoration: none;
-    outline: none;
-}
-.main .wrapper .inputContainer input:hover {
-    border: none;
-    border-bottom: 1px solid #ccc;
-    transition: all 0.4s;
-}
-.main .wrapper .inputContainer input:focus {
-    border: none;
-    border-bottom: 1px solid #ccc;
-}
+/* 제목 */
+.main .title {
+    padding-bottom: 2rem;
 
-.main .wrapper #button {
-    position:relative;
-    width: 100%;
-
-    padding: 10px 0;
-    font-size:1em;
-    text-align: center;
-
-    background:#1b1f23;
-    color:#fff;
-
-    border:none;
-    outline:none;
-
-    cursor:pointer;
-    transition:800ms ease all;
-}
-.main .wrapper #button:before,
-.main .wrapper #button:after{
-    content:'';
-    position:absolute;
-    top:45px;
-    left:0;
-    height:2px;
-    width:0;
-    background: #1b1f23;
-    transition:400ms ease all;
-}
-.main .wrapper #button:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-}
-.main .wrapper #button:hover{
-    background:#fff;
-    color:#1b1f23;
-}
-.main .wrapper #button:hover:before,
-.main .wrapper #button:hover:after{
-    width:100%;
-    transition:800ms ease all;
-}
-
-.main .background {
-    width: 50%;
-    z-index: 0;
-}
-.main .background img {
-    width: 100%;
-    padding: 0;
-    margin: 0;
+    font-family: "ebs_l";
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--navy);
 }
 
 .main .subtitle1 {
@@ -101,30 +33,78 @@
 .main .subtitle2 {
     font-size: 1rem;
 }
-.main .title {
-    font-family: "ebs_l";
-    font-size: 3rem;
-    font-weight: 700;
-    padding-bottom: 3rem;
-    /*padding-bottom: 80px;*/
+
+/* 로그인 버튼 */
+.main .wrapper #button {
+    position: relative;
+
+    width: 100%;
+    padding: 10px 0;
+
+    background: var(--navy);
+
+    font-size: 1em;
+    text-align: center;
+    color: white;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+    transition: 800ms ease all;
+}
+.main .wrapper #button:before,
+.main .wrapper #button:after {
+    content: '';
+    position: absolute;
+    top: 45px;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--main-dark-blue);
+    transition: 400ms ease all;
+}
+.main .wrapper #button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+.main .wrapper #button:hover {
+    background: white;
+    color: var(--main-dark-blue);
+    font-weight: bold;
+}
+.main .wrapper #button:hover:before,
+.main .wrapper #button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
 }
 
-.no-drag {
-    -ms-user-select: none;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
+/* 사람 서 있는 이미지 */
+.main .intro-img {
+    width: 50%;
+    z-index: 0;
+}
+.main .intro-img img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
     .main {
         flex-direction: column-reverse;
         padding: 30px;
-        min-height: calc(100vh - 63px - 99px);
+        min-height: calc(100vh - 3rem);
         height: auto;
     }
-    .main .background,
+
+    .main .subtitle1 {
+        font-size: 1.8rem;
+    }
+
+    .main .intro-img,
     .main .wrapper {
         width: 100%;
     }

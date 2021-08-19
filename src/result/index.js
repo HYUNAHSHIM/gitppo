@@ -1,5 +1,4 @@
 import React from "react";
-import {useLocation} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import {Doughnut} from 'react-chartjs-2';
 import jsPDF from 'jspdf';
@@ -13,224 +12,99 @@ const ref = React.createRef();
 const colors = ['#FFDF3E', '#C1C1C1', '#616161', '#756417', '#F7E07B', '#C2A527', '#F7CC91', '#757068', '#C5BCAF'];
 const options = {responsive: false,};
 
-function Skill({skill}) {
-    let level;
-    if (skill.level === "10") level = "초급";
-    else if (skill.level === "20") level = "중급";
-    else level = "고급";
 
-    return (
-      <div style={{display: "flex", padding: "5px 0px", justifyContent: "space-between"}}>
-          <div className="tempBtn">{skill.skill}</div>
-          <div>{level}</div>
-      </div>
-    );
-}
+const Work = ({company}) => (
+  <span className="profile-progress-each">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183 183"><circle cx="91.5" cy="91.5" r="91.5"/></svg>
+    <div>{company.start} ~ {company.end}</div>
+    <div>{company.name}</div>
+    <div>{company.position}</div>
+  </span>
+);
 
-function Language({ lang }) {
-    const language = { lang }.lang;
-    const langName = [];
-    const langNum = [];
-    for (let i = 0; i < Object.keys(language).length; i++) {
-        langName.push(Object.keys(language)[i]);
-        langNum.push(Object.values(language)[i]);
-    }
-    const data = {
-        labels: langName,
-        datasets: [{
-            data: langNum,
-            backgroundColor: colors,
-        }]
-    };
-    return <Doughnut data={data}
-                     options={options}
-                     style={{position: "relative", height: "130px"}}/>
-}
+const School = ({school}) => (
+  <span className="profile-progress-each">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183 183"><circle cx="91.5" cy="91.5" r="91.5"/></svg>
+    <div>{school.start} ~ {school.end}</div>
+    <div>{school.name}</div>
+    <div>{school.type}</div>
+  </span>
+);
 
-function Company({ company }) {
-    return (
-      <div className="story">
-          <h5><b>{company.company}</b></h5>
-          {company.start} ~ {company.end}
-          <p>{company.story}</p>
-      </div>
-    );
-}
+const Language = ({lang}) => (
+  <Doughnut style={{position: "relative", height: "150px"}}
+            options={options}
+            data={{
+              labels: Object.keys(lang),
+              datasets: [{
+                data: Object.values(lang),
+                backgroundColor: colors,
+              }]
+            }}/>
+);
 
-function Work({ company }) {
-    return (
-      <span className="c">
-            <div style={{width: "300px", paddingTop: "15px", fontSize: "0.9em"}}>
-                {company.start + "~" + company.end}
-            </div>
-            <div style={{width: "100px", fontWeight: "700"}}>
-                {company.company}
-            </div>
-        </span>
-    )
-}
+const Skill = ({skill}) => (
+  <li className={"skill-each"}>
+    <span className="skill-each-name">{skill.name}</span>
+    <span>{skill.level}</span>
+  </li>
+);
 
-function School({ school }) {
-    return (
-      <span className="c">
-            <div style={{width: "100px", paddingTop: "15px"}}>
-                <span style={{fontWeight: "700"}}>{school.schoolName}</span>
-                <br/>
-                <span style={{fontSize: "0.9em"}}>{school.school}</span>
-            </div>
-        </span>
-    )
-}
+const Repo = ({repo}) => (
+  <li className="project-each">
+    <div>
+      <p className={"result-subtitle"}>{repo.name}</p>
 
-function Repo({ repo }) {
-    const keys = Object.keys(repo.languages);
-    return (
-        <div className="project flex">
-            <div className="repo">
-            <h3 className="title">{repo.name}</h3>
-            <h6>{repo.description}</h6>
-            {repo.input.role && (
-                <h6><b>역할 | </b>{repo.input.role}</h6>
-            )}
-            {repo.input.skill && (
-                <h6><b>사용 기술 | </b>{repo.input.skill}</h6>
-            )}
-            {repo.input.skill && (
-                <h6><b>구현 내용 | </b>{repo.input.implement}</h6>
-            )}
-            <br/>
-            {keys.map(language => (
-                <span className="tempBtn">{language}</span>
-            ))}
-            </div >
-            <div className="readme">
-                <ReactMarkdown children={repo.readme} />
-            </div>
-        </div >
-    )
-}
+      <div>{repo.description}</div>
+      {repo.input.role && <div><b>역할 | </b>{repo.input.role}</div>}
+      {repo.input.skill && <div><b>사용 기술 | </b>{repo.input.skill}</div>}
+      {repo.input.implement && <div><b>구현 내용 | </b>{repo.input.implement}</div>}
+      <br/>
+      {Object.keys(repo.languages).map((language, i) =>
+        <span className="skill-each-name" key={i}>{language}</span>
+      )}
+    </div >
 
-function Preview() {
-    const location = useLocation();
-    console.log(location.state)
-    const
-        birth = location.state.birth.split('-'),
-        companys = location.state.companyList,
-        skills = location.state.skillList,
-        schools = location.state.schoolList,
-        keys = Object.keys(location.state);
+    <div className="project-readme">
+      <ReactMarkdown children={repo.readme} />
+    </div>
+  </li >
+);
 
-    const repos = [];
-    const dictLang = {};
-    let url = "";
+const Company = ({company}) => (
+  <li className={"experience-each"}>
+    <span className={"result-subtitle"}>{company.name}</span>
+    <span className={"skill-each-name"}>{company.position}</span>
+    <span>{company.start} ~ {company.end}</span>
+    <span>{company.content}</span>
+  </li>
+);
 
-    for (let i = 0; i < 4; i++)
-        url += (location.state[0].url.split('/')[i] + "/");
 
-    for (let i = 0; i < keys.length; i++) {
-        if (!isNaN(keys[i])) {
-            keys[i] = Number(keys[i])
-            repos.push(location.state[keys[i]])
+function Result({location}) {
+  const
+    {
+      birth, name, profile, user,
+      option:{school, skill, company},
+      git:repos,
+    } = location.state,
+    githubUrl = `https://github.com/${user}`,
+    languagesDict = {};
 
-            const keyy = Object.keys(location.state[keys[i]].languages)
-            const valuee = Object.values(location.state[keys[i]].languages)
-            for (let j = 0; j < keyy.length; j++) {
-                if (keyy[j] in dictLang) {
-                    dictLang[keyy[j]] = valuee[j] + dictLang[keyy[j]];
-                } else {
-                    dictLang[keyy[j]] = valuee[j];
-                }
-            }
-        }
-    }
+  const toPdf = () => {
+    html2canvas(document.querySelector("#capture"))
+      .then(canvas => {
+        const
+          doc = new jsPDF('p', 'mm', 'a4'),
+          imgData = canvas.toDataURL('image/jpeg'),
+          imgWidth = 170,                   // 이미지 가로 길이(mm) A4 기준
+          pageHeight = imgWidth * 1.414,    // 출력 페이지 세로 길이 계산 A4 기준
+          imgHeight = canvas.height * imgWidth / canvas.width,
+          margin = 20;
 
-    const langs = [dictLang];
-    return (
-      <div ref={ref}>
-          <div id="box">
-              <div className="content" id="capture">
-                  <div className="profile">
-                      <div className="img">
-                          <img src={location.state.img} id="head" alt={"프로필 사진"}/>
-                      </div>
-                      <div className="info">
-                          <br/>
-                          <div className="slogan"><h4>안녕하세요! 개발자 {location.state.name}입니다.</h4></div>
-                          <div className="name">
-                              <h1>{location.state.name}</h1>
-                          </div>
-                          <div className="birth">
-                              <h5>생년월일 {birth[0].substring(2)}.{birth[1]}.{birth[2]}</h5>
-                          </div>
-                          <div className="sns">
-                            <a href={url}
-                            target="_blank"
-                            title="git page"
-                            rel="noreferrer noopener">
-                                <FontAwesomeIcon icon={faGithub} size={"2x"}/>
-                            </a>
-                          </div>
-                          <br/>
-                      </div>
-                  </div>
-                  <div className="school">
-                      <div className="flex">
-                          <h4>학력</h4>
-                          <hr/>
-                          <div style={{display: "flex", paddingLeft: "30px", justifyContent: "space-around"}}>
-                              {schools.map(school => <School school={school} />)}
-                          </div>
-                      </div>
-                  </div>
-                  <div className="career">
-                      <div className="flex">
-                          <h4>경력</h4>
-                          <hr/>
-                          <div style={{display: "flex", paddingLeft: "30px", justifyContent: "space-around"}}>
-                              {companys && companys.map(company => <Work company={company} />)}
-                              {!companys && <span>없음</span>}
-                          </div>
-                      </div>
-                  </div>
-                  <div style={{width: "100%", height: "1px", margin: "30px 0px", background: "#eee"}}/>
-                  <div className="flex">
-                      <div className="stack">
-                          <h4 style={{padding: "10px 0px"}}>기술 스택</h4>
-                          <div style={{padding: "0px 30px"}}>
-                              {skills.map(skill => <Skill skill={skill} />)}
-                          </div>
-                      </div>
-                      <div className="lang">
-                          <h4>사용 언어</h4>
-                          {langs.map(lang => <Language lang={lang} />)}
-                      </div>
-                  </div>
-                  <div style={{width: "100%", height: "1px", margin: "30px 0px", background: "#eee"}}/>
-                  <div id="repo">
-                      {repos.map(repo => <Repo repo={repo} />)}
-                  </div>
-                  <div id="story">
-                      <h4>Story</h4>
-                      {companys.map(company => <Company company={company} />)}
-                  </div>
-              </div>
-          </div>
-      </div >
-    )
-}
-
-function toPdf() {
-    html2canvas(document.querySelector("#capture")).then(canvas => {
-        const doc = new jsPDF('p', 'mm', 'a4');
-
-        const imgData = canvas.toDataURL('image/jpeg');
-        const imgWidth = 170; // 이미지 가로 길이(mm) A4 기준
-        const pageHeight = imgWidth * 1.414; // 출력 페이지 세로 길이 계산 A4 기준
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        const margin = 20;
-
-        let heightLeft = imgHeight;
-        let position = 0;
+        let
+          heightLeft = imgHeight,
+          position = 0;
 
         // 첫 페이지 출력
         doc.addImage(imgData, 'jpeg', margin, position, imgWidth, imgHeight);
@@ -238,34 +112,115 @@ function toPdf() {
 
         // 한 페이지 이상일 경우 루프 돌면서 출력
         while (heightLeft >= 20) {
-            position = heightLeft - imgHeight;
-            doc.addPage();
-            doc.addImage(imgData, 'jpeg', margin, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(imgData, 'jpeg', margin, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
         }
 
         // 파일 저장
         doc.save('gitppo.pdf');
-    });
-}
+      });
+  }
 
-function Result() {
-    return (
-      <div className="result-container">
-          <div className="result">
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <h4 style={{ margin: "10px 0px 30px 0px", fontSize: "1.4em", fontWeight: "600", padding: "4px 10px", borderLeft: "6px solid #444" }}>
-                      포트폴리오 완성
-                  </h4>
+  const calcAge = () => {
+    const today = new Date();
+    const birthDate = new Date(birth);
+    const age = today.getFullYear() - birthDate.getFullYear();
 
-                  <button className="nextButton"
-                          onClick={toPdf}>
-                      추출하기
-                  </button>
+    const sub = today.getMonth() - birthDate.getMonth();
+    if (sub < 0 || (sub === 0 && today.getDate() < birthDate.getDate())) return age-1;
+    else return age;
+  }
+
+  for(let repo of repos) {
+    const languages = repo.languages;
+    for(let language in languages) {
+      if(!languagesDict[language]) languagesDict[language] = 0;
+      languagesDict[language] += languages[language];
+    }
+  }
+
+  return (
+    <div>
+      <div className={"title"}>
+        <h4>포트폴리오 완성</h4>
+        <button className={"nextButton"}
+                onClick={toPdf}>추출하기</button>
+      </div>
+
+      <ul>
+        <li>* Gitppo의 포트폴리오는 A4 용지를 기준으로 작성되었습니다.</li>
+        <li>* 가급적 PC 화면으로 봐주시기 바랍니다.</li>
+        <li>* 포트폴리오는 좌우로 스크롤하여 확인하실 수 있습니다.</li>
+      </ul>
+
+      <div className={"result-container"}>
+        <div ref={ref} className={"result"} id={"capture"}>
+
+          {/* 기본 인적사항 */}
+          <div>
+            <div className={"profile-head"}>
+              <div className="profile-img">
+                <img src={profile} alt={"프로필 사진"}/>
               </div>
+
+              <div className="profile-text">
+                <div className={"profile-text-intro"}>
+                  <h4>안녕하세요!</h4>
+                  <h4>개발자 <span className={"profile-text-name"}>{name}</span>입니다.</h4>
+                </div>
+
+                <h5>생년월일 {birth.replaceAll("-", ".").substring(2)} <span className={"subtitle"}>(만 {calcAge()}세)</span></h5>
+                <a href={githubUrl}
+                   target="_blank"
+                   title="git page"
+                   rel="noreferrer noopener">
+                  <FontAwesomeIcon icon={faGithub} size={"2x"}/>
+                  <h5>{githubUrl}</h5>
+                </a>
+              </div>
+            </div>
+
+            {/* 학력/경력 */}
+            <div className="profile-progress">
+              <h4 className={"result-subtitle"}>학력</h4>
+              <hr className={"profile-progress-bar"}/>
+              <div>{school.map(school => <School school={school} />)}</div>
+            </div>
+            <div className="profile-progress">
+              <h4 className={"result-subtitle"}>경력</h4>
+              <hr className={"profile-progress-bar"}/>
+              <div>{company && company.map(company => <Work company={company} />)}</div>
+            </div>
           </div>
-          <Preview />
-      </div >
-    );
+
+          {/***********************************************/}
+          {/* 기술 스택 / 사용 언어 */}
+          <div  className="skill">
+            <h4>사용 기술 및 언어</h4>
+            <div>
+              <div className={"skill-language"}><Language lang={languagesDict}/></div>
+              <ul className={"skill-container"}>{skill.map(skill => <Skill skill={skill} />)}</ul>
+            </div>
+          </div>
+
+          {/***********************************************/}
+          <div>
+            <h4>프로젝트</h4>
+            <ul className={"project"}>{repos.map((repo, i) => <Repo repo={repo} key={i}/>)}</ul>
+          </div>
+
+          {/***********************************************/}
+          <div>
+            <h4>경험</h4>
+            <ul className={"experience"}>{company.map(company => <Company company={company} />)}</ul>
+          </div>
+
+        </div>
+      </div>
+    </div >
+  );
 }
+
 export default Result;

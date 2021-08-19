@@ -74,7 +74,10 @@ function Git({ location }) {
       });
 
     // 수정된 infos를 다음 페이지로 넘긴다.
-    history.push("/info", result);
+    history.push("/info", {
+      git: result,
+      user: location.state.data.user
+    });
   }
 
   if (curRepo === undefined) {
@@ -92,7 +95,7 @@ function Git({ location }) {
     <div>
       {/* 타이틀 */}
       <div className={"title"}>
-        <h4>레포지토리 별 상세 설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
+        <h4>레포지토리 별 상세설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
         <button className="nextButton"
                 onClick={handleSaveButton}>저장</button>
       </div>

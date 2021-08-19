@@ -58,9 +58,11 @@ code {
 }
 
 header, footer,
-div, h1, h2, h3, h4,
-a, p, center, b, input
-ul, li {
+div, a,input,
+h1, h2, h3, h4,
+p, center, b,
+ul, li,
+option, select {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -73,6 +75,11 @@ ul, li {
 :root {
   --main-light-blue: #F2F7FF;
   --main-blue: #0B409C;
-  --main-dark-blud: #10316B;
+  --main-dark-blue: #10316B;
   --main-yellow: #FFCE63;
+  --navy: #1b1f23;
+}
+
+a, button {
+  cursor: pointer;
 }
