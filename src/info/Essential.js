@@ -31,10 +31,7 @@ function Essential({data, setData}) {
 
   return (
     <div className={"essential-container"}>
-      <div className={"title"}>
-        <h4>필수 정보</h4>
-        <div className={"subtitle"}>* 날짜 선택은 달력 아이콘을 누르세요.</div>
-      </div>
+      <div className={"title"}><h4>필수 정보</h4></div>
 
       {/* 사진 */}
       <div>

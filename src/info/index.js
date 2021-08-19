@@ -32,6 +32,8 @@ function User({ location }) {
                   form={"info-form"}>저장하기</button>
         </div>
 
+        <div>* 날짜 선택은 달력 아이콘을 누르세요.</div>
+
         {/* 입력 창 */}
         <form id={"info-form"}
               onSubmit={onClickSave}>

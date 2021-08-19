@@ -1,9 +1,12 @@
 /* info form */
 #info-form {
-    background: white;
     padding: 20px;
+    margin-top: 1em;
+
     border: 1px solid #828282;
     border-radius: .25rem;
+
+    background: white;
 }
 #info-form .title h4 {
     font-size: 1.2em;
