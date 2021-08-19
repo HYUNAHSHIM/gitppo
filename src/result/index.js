@@ -1,5 +1,4 @@
 import React from "react";
-import {useLocation} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import {Doughnut} from 'react-chartjs-2';
 import jsPDF from 'jspdf';
@@ -56,13 +55,13 @@ const Repo = ({repo}) => (
     <div>
       <p className={"result-subtitle"}>{repo.name}</p>
 
-      <h6>{repo.description}</h6>
-      {repo.input.role && <h6><b>역할 | </b>{repo.input.role}</h6>}
-      {repo.input.skill && <h6><b>사용 기술 | </b>{repo.input.skill}</h6>}
-      {repo.input.implement && <h6><b>구현 내용 | </b>{repo.input.implement}</h6>}
+      <div>{repo.description}</div>
+      {repo.input.role && <div><b>역할 | </b>{repo.input.role}</div>}
+      {repo.input.skill && <div><b>사용 기술 | </b>{repo.input.skill}</div>}
+      {repo.input.implement && <div><b>구현 내용 | </b>{repo.input.implement}</div>}
       <br/>
-      {Object.keys(repo.languages).map(language =>
-        <span className="skill-each-name">{language}</span>
+      {Object.keys(repo.languages).map((language, i) =>
+        <span className="skill-each-name" key={i}>{language}</span>
       )}
     </div >
 
@@ -209,7 +208,7 @@ function Result({location}) {
           {/***********************************************/}
           <div>
             <h4>프로젝트</h4>
-            <ul className={"project"}>{repos.map((repo) => <Repo repo={repo} />)}</ul>
+            <ul className={"project"}>{repos.map((repo, i) => <Repo repo={repo} key={i}/>)}</ul>
           </div>
 
           {/***********************************************/}

@@ -1,5 +1,4 @@
 import input from "@material-ui/core/Input";
-import {useState} from "react";
 
 function Essential({data, setData}) {
   const onHandleImgChange = (e) => {
