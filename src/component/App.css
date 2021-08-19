@@ -26,7 +26,7 @@
   padding: 4px 10px;
 
   font-weight: bold;
-  border-left: 6px solid var(--main-dark-blud);
+  border-left: 6px solid var(--main-dark-blue);
 }
 
 /* 버튼 */
@@ -42,7 +42,7 @@
   text-decoration: none;
 
   color: white;
-  background: var(--main-dark-blud);
+  background: var(--main-dark-blue);
 
   border: none;
   border-radius: 0;
@@ -59,7 +59,12 @@
   font-family: "ebs_sb";
   font-size: 1.5em;
   font-weight: 600;
-  color: var(--main-dark-blud);
+  color: var(--main-dark-blue);
+}
+
+/* 커서 모양 포인터로 */
+.pointer {
+  cursor: pointer;
 }
 
 /* 헤더 */
@@ -114,7 +119,7 @@ footer span {
   margin: 0 20px;
 }
 footer path {
-  fill: var(--main-dark-blud);
+  fill: var(--main-dark-blue);
 }
 
 /* 로딩/에러/callback 페이지에서 사용 */
@@ -127,6 +132,15 @@ footer path {
 
   text-align: center;
   font-size: 1.3em;
+}
+
+/* 드래그 방지 */
+.no-drag {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 @media screen and (max-width: 600px) {

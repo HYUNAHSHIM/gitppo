@@ -27,7 +27,7 @@ function main() {
         </a>
       </div>
 
-      <div className={"background"}>
+      <div className={"intro-img"}>
         <img src={process.env.PUBLIC_URL + "/main.svg"}  alt={"소개 이미지"}/>
       </div>
     </div>

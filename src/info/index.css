@@ -1,19 +1,24 @@
-.info-subtitle {
-    font-weight: bold;
+/* info form */
+#info-form {
+    background: white;
+    padding: 20px;
+    border: 1px solid #828282;
+    border-radius: .25rem;
+}
+#info-form .title h4 {
+    font-size: 1.2em;
 }
 
-.info-subtitle,
-.info-container > div {
-    margin-bottom: 20px;
-}
-
-.info-container label {
+/* 소제목들 */
+#info-form label {
     width: 15%;
     max-width: 100px;
     font-weight: bold;
 }
-.info-container input {
-    width: 200px;
+/* 입력칸 */
+#info-form input {
+    width: 100%;
+    max-width: 200px;
     height: 2rem;
     margin: 10px;
 
@@ -22,37 +27,72 @@
     outline: none;
 
     font-size: 0.9em;
+    background: none;
 }
 .info input:focus,
 .info input:hover {
-    border-bottom: 2.5px solid black;
+    border-bottom: 2.5px solid var(--main-blue) !important;
 }
 
-.info input,
-.info-each-input-container {
-    position: relative;
-    display: inline-table;
-    /*float: left;*/
-    /*left: 5%;*/
+/* 입력칸 : 크롬에서 채워지면 배경색 채워지는 것 해제 */
+.info input:-webkit-autofill,
+.info input:-webkit-autofill:hover,
+.info input:-webkit-autofill:focus,
+.info input:-webkit-autofill:active {
     background: none;
 }
 
-.info-each-input-container {
-    padding: 0;
+/* 오른쪽 입력칸들을 왼쪽정렬 */
+.essential-container input,
+.option-each-container {
+    position: relative;
+    display: inline-table;
 }
 
-.MuiFormControl-root {
-    height: 2rem;
-    margin: 10px !important;
+/* 옵션에서의 하나 소항목에 대한 입력 덩어리 */
+.option-each-container {
     padding: 0;
 }
+/* 덩어리의 각 한 줄 */
+.option-each-input {
+    display: flex;
+    align-items: center;
+}
+
+/* 필수사항 컨테이너 */
+.essential-container {
+    margin-bottom: 20px;
+}
+
+/* 선택사항 컨테이너 */
+.option-container {
+    border-top: 1px dotted #ccc;
+    padding-top: 20px;
+}
+
+/* 추가/빼기 버튼들 */
+.info-float-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    margin: 10px;
+
+    background: none;
+    /*border: none;*/
+    border: 1px solid #ccc;
+    border-radius: 100%;
+}
+.info-float-button:hover {
+    background: var(--main-yellow);
+}
+
+/* 드롭다운 */
 .MuiInputBase-root {
     height: 100%;
-}
-#demo-controlled-open-select {
     font-size: 0.9em;
-}
-
-.emphasis {
-    color: crimson;
+    margin: 10px;
 }
