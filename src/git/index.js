@@ -74,7 +74,10 @@ function Git({ location }) {
       });
 
     // 수정된 infos를 다음 페이지로 넘긴다.
-    history.push("/info", result);
+    history.push("/info", {
+      git: result,
+      user: location.state.data.user
+    });
   }
 
   if (curRepo === undefined) {

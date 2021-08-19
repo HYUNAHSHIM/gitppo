@@ -82,15 +82,14 @@ const Company = ({company}) => (
 );
 
 
-function Result() {
+function Result({location}) {
   const
-    location = useLocation(),
     {
-      birth, name, profile,
+      birth, name, profile, user,
       option:{school, skill, company},
-      git:repos
+      git:repos,
     } = location.state,
-    githubUrl = `https://github.com/${repos[0].url.split("/")[3]}`,
+    githubUrl = `https://github.com/${user}`,
     languagesDict = {};
 
   const toPdf = () => {
