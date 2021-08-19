@@ -46,7 +46,7 @@ function Essential({data, setData}) {
                onChange={onHandleImgChange}/>
         {/*사진 미리보기*/}
         {data.profile && (
-          <span>
+          <span className={"info-profile"}>
             <img src={data.profile}
                  alt="프로필 이미지"
                  height={"100px"}

@@ -96,3 +96,57 @@
     font-size: 0.9em;
     margin: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    /* 필수, 옵션 공통 */
+    #info-form .title {
+        margin-bottom: 20px;
+    }
+    #info-form .subtitle {
+        display: none;
+    }
+
+    /* 모든 label 너비 */
+    #info-form label {
+        width: 100%;
+    }
+    /* 모든 input 너비 */
+    #info-form input,
+    .option-each-container,
+    .option-each-input,
+    .MuiInputBase-root {
+        max-width: 100%;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* 필수 */
+    .essential-container > div {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .info-profile {
+        position: relative;
+        float: bottom;
+    }
+
+    /* 옵션 */
+    .option-container > div {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .option-each-container {
+        margin-top: 0;
+    }
+    .option-each-input {
+        flex-direction: column;
+        align-items: normal;
+    }
+    .info-float-button {
+        margin: 5px auto 5px 0;
+    }
+}

@@ -15,6 +15,25 @@
     background: white;
 }
 
+/* 제목 */
+.main .title {
+    padding-bottom: 2rem;
+
+    font-family: "ebs_l";
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.main .subtitle1 {
+    font-size: 2rem;
+    padding-bottom: 3rem;
+}
+
+.main .subtitle2 {
+    font-size: 1rem;
+}
+
 /* 로그인 버튼 */
 .main .wrapper #button {
     position: relative;
@@ -22,7 +41,7 @@
     width: 100%;
     padding: 10px 0;
 
-    background: var(--main-dark-blue);
+    background: var(--navy);
 
     font-size: 1em;
     text-align: center;
@@ -73,32 +92,18 @@
     margin: 0;
 }
 
-/* 제목 */
-.main .title {
-    padding-bottom: 2rem;
-
-    font-family: "ebs_l";
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--main-dark-blue);
-}
-
-.main .subtitle1 {
-    font-size: 2rem;
-    padding-bottom: 3rem;
-}
-
-.main .subtitle2 {
-    font-size: 1rem;
-}
-
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
     .main {
         flex-direction: column-reverse;
         padding: 30px;
-        min-height: calc(100vh - 63px - 99px);
+        min-height: calc(100vh - 3rem);
         height: auto;
     }
+
+    .main .subtitle1 {
+        font-size: 1.8rem;
+    }
+
     .main .intro-img,
     .main .wrapper {
         width: 100%;

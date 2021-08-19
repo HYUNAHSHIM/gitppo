@@ -29,6 +29,10 @@
   border-left: 6px solid var(--main-dark-blue);
 }
 
+.subtitle {
+  color: #5f5f5f;
+}
+
 /* 버튼 */
 .nextButton {
   height: 45px;
@@ -132,6 +136,7 @@ footer path {
 
   text-align: center;
   font-size: 1.3em;
+  word-break: keep-all;
 }
 
 /* 드래그 방지 */
@@ -156,5 +161,12 @@ footer path {
     width: auto;
 
     margin-left: 10px;
+  }
+
+  .title {
+    word-break: keep-all;
+  }
+  .subtitle {
+    font-size: 0.9em;
   }
 }

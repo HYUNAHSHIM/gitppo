@@ -92,7 +92,7 @@ function Git({ location }) {
     <div>
       {/* 타이틀 */}
       <div className={"title"}>
-        <h4>레포지토리 별 상세 설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
+        <h4>레포지토리 별 상세설정 <span>{curRepoIndex + 1}/{repositories.length}</span></h4>
         <button className="nextButton"
                 onClick={handleSaveButton}>저장</button>
       </div>
